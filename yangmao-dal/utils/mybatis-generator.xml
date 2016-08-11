@@ -9,7 +9,7 @@
 
     <context id="MySQLTables" targetRuntime="MyBatis3">
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.200.22:3306/rebates?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;autoReconnectForPools=true&amp;zeroDateTimeBehavior=convertToNull"
+                        connectionURL="jdbc:mysql://192.168.200.22:3306/yangmao?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;autoReconnectForPools=true&amp;zeroDateTimeBehavior=convertToNull"
                         userId="root" password="password">
         </jdbcConnection>
 
@@ -17,57 +17,30 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.office.rebates.dal.dataobj"
+        <javaModelGenerator targetPackage="com.yangmao.dal.dataobj"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.office.rebates.dal.dao"
+        <sqlMapGenerator targetPackage="com.yangmao.dal.dao"
                          targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.office.rebates.dal.dao"
+                             targetPackage="com.yangmao.dal.dao"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="rebates_user" domainObjectName="RebatesUser">
+        <table tableName="yangmao_user" domainObjectName="YangmaoUser">
         	<generatedKey column="user_id" sqlStatement="MySql" identity="true" />
         </table>
         
 
-        <table tableName="question_answer" domainObjectName="QuestionAnswer">
-            <generatedKey column="qa_id" sqlStatement="MySql" identity="true" />
-        </table>
-
-        <table tableName="sales_people" domainObjectName="SalesPeople">
-        	<generatedKey column="sales_id" sqlStatement="MySql" identity="true" />
-        </table>
-        
-        <table tableName="rebates_order" domainObjectName="RebatesOrder">
-			<generatedKey column="order_id" sqlStatement="MySql" identity="true" />       
-        </table>
-        
-        <table tableName="rebates_order_item" domainObjectName="RebatesOrderItem">
-			<generatedKey column="order_item_id" sqlStatement="MySql" identity="true" />       
-        </table>
-        
-        <table tableName="rebates_bonus" domainObjectName="RebatesBonus">
-			<generatedKey column="bonus_id" sqlStatement="MySql" identity="true" />       
-        </table>
-        
-        <table tableName="rebates_bonus_mock" domainObjectName="RebatesBonusMock">
-			<generatedKey column="bonus_mock_id" sqlStatement="MySql" identity="true" />       
-        </table>
-        
-        <table tableName="rebates_global_lock" domainObjectName="RebatesGlobalLock">
-        </table>
-        
-        <table tableName="rebates_article" domainObjectName="RebatesArticle">
-			<generatedKey column="article_id" sqlStatement="MySql" identity="true" />       
+        <table tableName="yangmao_email" domainObjectName="YangmaoEmail">
+            <generatedKey column="email_id" sqlStatement="MySql" identity="true" />
         </table>
         
     </context>

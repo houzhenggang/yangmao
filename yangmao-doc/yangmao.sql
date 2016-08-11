@@ -24,9 +24,9 @@ CREATE TABLE `yangmao_email` (
   `last_email_time` datetime comment '最后发送到该邮箱时间',
   `last_reject_time` datetime comment '最后拒收时间',
   PRIMARY KEY (`email_id`),
-  unique KEY `email` (`email`),
-  KEY `last_email_time` (`last_email_time`)
-) 
+  KEY `email` (`email`),
+  KEY `last_email_time` (`last_email_time`)) 
+  ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='邮箱表'
 	PARTITION BY RANGE (email_id) (
     PARTITION p0 VALUES LESS THAN (1000000),
     PARTITION p1 VALUES LESS THAN (2000000),
@@ -49,7 +49,7 @@ CREATE TABLE `yangmao_email` (
     PARTITION p18 VALUES LESS THAN (19000000),
     PARTITION p19 VALUES LESS THAN (20000000),
     PARTITION p20 VALUES LESS THAN MAXVALUE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='邮箱表';
+);
 
 
 
