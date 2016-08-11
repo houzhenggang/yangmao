@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="rebates-web:war">
+    <output-path>$PROJECT_DIR$/rebates-web/target</output-path>
+    <root id="archive" name="rebates-web-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="rebates-web:war exploded" />
+    </root>
+  </artifact>
+</component>

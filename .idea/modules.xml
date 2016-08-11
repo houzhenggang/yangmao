@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/parent.iml" filepath="$PROJECT_DIR$/parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rebates-dal/rebates-dal.iml" filepath="$PROJECT_DIR$/rebates-dal/rebates-dal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rebates-model/rebates-model.iml" filepath="$PROJECT_DIR$/rebates-model/rebates-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rebates-service/rebates-service.iml" filepath="$PROJECT_DIR$/rebates-service/rebates-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rebates-util/rebates-util.iml" filepath="$PROJECT_DIR$/rebates-util/rebates-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rebates-web/rebates-web.iml" filepath="$PROJECT_DIR$/rebates-web/rebates-web.iml" />
+    </modules>
+  </component>
+</project>
