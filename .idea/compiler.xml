@@ -52,6 +52,41 @@
         <processorPath useClasspath="true" />
         <module name="rebates-service" />
       </profile>
+      <profile default="false" name="Annotation profile for yangmao-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="yangmao-service" />
+      </profile>
+      <profile default="false" name="Annotation profile for yangmao-util" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="yangmao-util" />
+      </profile>
+      <profile default="false" name="Annotation profile for yangmao-dal" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="yangmao-dal" />
+      </profile>
+      <profile default="false" name="Annotation profile for yangmao-web" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="yangmao-web" />
+      </profile>
+      <profile default="false" name="Annotation profile for yangmao-model" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="yangmao-model" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="parent" target="1.7" />
@@ -61,6 +96,11 @@
       <module name="rebates-service" target="1.7" />
       <module name="rebates-util" target="1.7" />
       <module name="rebates-web" target="1.7" />
+      <module name="yangmao-dal" target="1.7" />
+      <module name="yangmao-model" target="1.7" />
+      <module name="yangmao-service" target="1.7" />
+      <module name="yangmao-util" target="1.7" />
+      <module name="yangmao-web" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
