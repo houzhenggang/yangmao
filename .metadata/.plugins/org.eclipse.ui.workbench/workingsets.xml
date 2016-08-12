@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1470991301056_0" label="parent" name="parent">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/yangmao-dal" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/yangmao-web" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/yangmao-model" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/yangmao-util" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/yangmao-service" type="4"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1470995528107_1" label="Window Working Set" name="Aggregate for window 1470995528106"/>
+</workingSetManager>

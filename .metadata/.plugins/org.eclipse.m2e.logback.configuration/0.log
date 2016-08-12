@@ -1,0 +1,50 @@
+2016-08-12 16:41:45,858 [Worker-13] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.yangmao:yangmao-model:1.0-SNAPSHOT @ D:\workspace\soho\yangmao\yangmao-model\pom.xml.
+2016-08-12 16:41:47,374 [Worker-13] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.yangmao:yangmao-util:1.0-SNAPSHOT @ D:\workspace\soho\yangmao\yangmao-util\pom.xml.
+2016-08-12 16:41:48,271 [Worker-13] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.yangmao:yangmao-dal:1.0-SNAPSHOT @ D:\workspace\soho\yangmao\yangmao-dal\pom.xml.
+2016-08-12 16:41:49,127 [Worker-13] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.yangmao:yangmao-service:1.0-SNAPSHOT @ D:\workspace\soho\yangmao\yangmao-service\pom.xml.
+2016-08-12 16:41:49,614 [Worker-13] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.yangmao:yangmao-web:1.0-SNAPSHOT @ D:\workspace\soho\yangmao\yangmao-web\pom.xml.
+2016-08-12 16:41:55,885 [Worker-13] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /yangmao-model/src/main/java
+2016-08-12 16:41:55,886 [Worker-13] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /yangmao-model/src/test/java
+2016-08-12 16:41:56,571 [Worker-13] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /yangmao-util/src/main/java
+2016-08-12 16:41:56,572 [Worker-13] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /yangmao-util/src/test/java
+2016-08-12 16:41:56,883 [Worker-13] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /yangmao-dal/src/main/java
+2016-08-12 16:41:56,884 [Worker-13] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /yangmao-dal/src/main/resources
+2016-08-12 16:41:56,885 [Worker-13] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /yangmao-dal/src/test/java
+2016-08-12 16:41:57,154 [Worker-13] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /yangmao-service/src/main/java
+2016-08-12 16:41:57,154 [Worker-13] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /yangmao-service/src/test/java
+2016-08-12 16:41:57,560 [Worker-13] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /yangmao-web/src/main/java
+2016-08-12 16:41:57,560 [Worker-13] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /yangmao-web/src/main/resources
+2016-08-12 16:41:57,562 [Worker-13] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /yangmao-web/src/test/java
+2016-08-12 16:42:02,779 [Worker-13] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 5 project(s) in 21 sec
+2016-08-12 16:42:06,825 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-12 16:42:06,825 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\soho\yangmao\yangmao-model\src\main\resources
+2016-08-12 16:42:06,829 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-12 16:42:06,829 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\soho\yangmao\yangmao-model\src\test\resources
+2016-08-12 16:42:09,436 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-12 16:42:09,436 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\soho\yangmao\yangmao-util\src\main\resources
+2016-08-12 16:42:09,438 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-12 16:42:09,439 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\soho\yangmao\yangmao-util\src\test\resources
+2016-08-12 16:42:11,926 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-12 16:42:11,946 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2016-08-12 16:42:11,988 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-12 16:42:11,988 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\soho\yangmao\yangmao-dal\src\test\resources
+2016-08-12 16:42:13,715 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-12 16:42:13,715 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\soho\yangmao\yangmao-service\src\main\resources
+2016-08-12 16:42:13,717 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-12 16:42:13,717 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\soho\yangmao\yangmao-service\src\test\resources
+2016-08-12 16:42:25,905 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-12 16:42:25,906 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 18 resources
+2016-08-12 16:42:25,944 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-12 16:42:25,944 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\soho\yangmao\yangmao-web\src\test\resources
+2016-08-12 17:52:17,902 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-12 17:52:17,906 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\soho\yangmao\yangmao-util\src\main\resources
+2016-08-12 17:52:17,910 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-12 17:52:17,910 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\soho\yangmao\yangmao-util\src\test\resources
+2016-08-12 17:52:20,938 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-12 17:52:20,945 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 18 resources
+2016-08-12 17:52:20,956 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-12 17:52:20,956 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\soho\yangmao\yangmao-web\src\test\resources
+2016-08-12 17:53:51,217 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-12 17:53:51,229 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 18 resources
+2016-08-12 17:53:51,246 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-08-12 17:53:51,246 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\soho\yangmao\yangmao-web\src\test\resources
