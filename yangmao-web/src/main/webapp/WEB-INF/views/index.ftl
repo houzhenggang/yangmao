@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js">
-<#include "../web_common/base.ftl">
+<#include "./web_common/base.ftl">
 <!-- ============================================
 SIDEBAR SECTION
 =============================================== -->

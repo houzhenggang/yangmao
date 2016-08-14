@@ -18,12 +18,12 @@
 	<annotation-driven />
 
 
-	<interceptors>
-		<interceptor>
-			<mapping path="/admin/**"/>
-			<beans:bean class="com.office.rebates.interceptor.LoginInterceptor" />
-		</interceptor>
-	</interceptors>
+	<!--<interceptors>-->
+		<!--<interceptor>-->
+			<!--<mapping path="/admin/**"/>-->
+			<!--<beans:bean class="com.office.rebates.interceptor.LoginInterceptor" />-->
+		<!--</interceptor>-->
+	<!--</interceptors>-->
 
 	<resources mapping="/wrap/**" location="/wrap/" />
 
