@@ -1,4 +1,4 @@
-package com.office.rebates.util;
+package com.yangmao.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

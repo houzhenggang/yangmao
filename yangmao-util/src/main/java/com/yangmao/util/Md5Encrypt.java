@@ -1,4 +1,4 @@
-package com.office.rebates.util;
+package com.yangmao.util;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

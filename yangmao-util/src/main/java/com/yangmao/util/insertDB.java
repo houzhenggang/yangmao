@@ -73,9 +73,13 @@ public class insertDB {
 		            String line="";
 		            String[] arrs=null;
 		            int i=0;
+		            String email=null;
+		            String sql1=null;
+		            String sql2=null;
+		            ResultSet rs=null;
 		            while ((line=br.readLine())!=null) {
 		            	i++;
-		                String email=line.trim();
+		                email=line.trim();
 		                System.out.println("processing line:"+i+" email:"+email);
 		                
 		                //验证地址是否正确
@@ -85,18 +89,18 @@ public class insertDB {
 		                }
 		                
 		                //查看是否该email已经存在
-		                String sql1="select * from yangmao_email where email=?";
+		                sql1="select * from yangmao_email where email=?";
 		    			//System.out.println("sql is:"+sql);
 		    			pStatement1 = conn.prepareStatement(sql1);
 		    			pStatement1.setString(1, email);
-		    			ResultSet rs=pStatement1.executeQuery();
+		    			rs=pStatement1.executeQuery();
 		    			if (rs.next()) {
 		    				System.out.println("found existing email");
 		    				continue;	    				
 						}
 		                
 		                //insert into tb
-		                String sql2="insert into yangmao_email(email,last_email_time) values(?,?)";
+		                sql2="insert into yangmao_email(email,last_email_time) values(?,?)";
 		                pStatement = conn.prepareStatement(sql2);
 		                pStatement.setString(1, email);
 		                pStatement.setTimestamp(2, ts);	    

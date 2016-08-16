@@ -1,4 +1,4 @@
-package com.office.rebates.util;
+package com.yangmao.util;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;

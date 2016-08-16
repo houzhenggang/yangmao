@@ -1,4 +1,4 @@
-package com.office.rebates.util;
+package com.yangmao.util;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
