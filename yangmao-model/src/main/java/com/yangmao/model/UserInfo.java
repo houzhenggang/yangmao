@@ -1,4 +1,4 @@
-package com.office.rebates.model;
+package com.yangmao.model;
 
 public class UserInfo {
 	public Long getUserId() {

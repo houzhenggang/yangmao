@@ -1,4 +1,4 @@
-package com.office.rebates.model.common;
+package com.yangmao.model.common;
 
 import java.math.BigDecimal;
 

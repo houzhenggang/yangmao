@@ -1,4 +1,4 @@
-package com.office.rebates.model.common;
+package com.yangmao.model.common;
 
 /**
  * 主要功能是在视图层和控制层之间传输数据， 里面封装了需要显示的分页信息和分页数据�??

@@ -1,6 +1,6 @@
-package com.office.rebates.model.common;
+package com.yangmao.model.common;
 
-public class RebatesException extends Exception {
+public class YangmaoException extends Exception {
 
     /**
 	 * 
@@ -9,7 +9,7 @@ public class RebatesException extends Exception {
 	private Integer code;
     private String msg;
 
-    public RebatesException(Integer code, String msg) {
+    public YangmaoException(Integer code, String msg) {
         super();
         this.code = code;
         this.msg = msg;

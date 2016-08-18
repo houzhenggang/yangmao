@@ -1,4 +1,4 @@
-package com.office.rebates.model.request;
+package com.yangmao.model.request;
 
 
 /**

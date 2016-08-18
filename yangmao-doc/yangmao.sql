@@ -51,5 +51,38 @@ CREATE TABLE `yangmao_email` (
     PARTITION p20 VALUES LESS THAN MAXVALUE
 );
 
+#淘宝客选品组
+CREATE TABLE `yangmao_favorites` (
+  `favorites_id` bigint NOT NULL  COMMENT '选品组ID',
+  `title` varchar(100) COMMENT '选品组名称',
+  `type` int(11) COMMENT '1：普通类型，2高佣金类型',  
+  `create_time` datetime comment '创建时间',
+  `last_update_time` datetime comment '最后一次更新时间',
+  PRIMARY KEY (`favorites_id`),
+  KEY `title` (`title`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='选品组表';
 
+#淘宝客选品
+CREATE TABLE `yangmao_favorites_item` (
+  `num_iid` bigint NOT NULL  COMMENT '选品ID',
+  `favorites_id` bigint  COMMENT '选品组ID',
+  `title` varchar(100) COMMENT '选品名称',
+  `item_url` varchar(300) COMMENT '商品地址',
+  `pict_url` varchar(300) COMMENT '商品主图地址',
+  `item_images` varchar(2048) COMMENT '商品图列表,逗号分割',
+  `nick` varchar(50) COMMENT '卖家昵称',
+  `seller_id` bigint  COMMENT '卖家ID',
+  `provcity` varchar(50) COMMENT '宝贝所在地',
+  `original_price` decimal(7,2) COMMENT '原价，单位元',
+  `final_price` decimal(7,2) COMMENT '折后价，单位元',
+  `final_price_wap` decimal(7,2) COMMENT '无线折扣价，即宝贝在无线上的实际售卖价格',
+  `click_url` varchar(300) COMMENT '淘客地址',
+  `tk_rate` decimal(7,2) COMMENT '淘客百分率,39.0表示39%',
+  `volume` int(11) COMMENT '30天销量',   
+  `create_time` datetime comment '创建时间',
+  `last_update_time` datetime comment '最后一次更新时间',
+  PRIMARY KEY (`num_iid`),
+  KEY `favorites_id` (`favorites_id`),
+  KEY `title` (`title`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='选品表';
 
