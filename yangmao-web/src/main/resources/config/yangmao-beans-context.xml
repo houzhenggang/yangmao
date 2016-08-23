@@ -104,11 +104,11 @@
 
 	
 	 <!-- 每一个小时更新一次选品状态 -->
-	 <!--  <value>0 */3 * * * ?</value> <value>0 0 2 * * ?</value>-->
+	 <!--   <value>0 15 */1 * * ?</value>-->
 	<bean id="tbkFavoritesUpdateTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="tbkFavoritesUpdateJob" />
 		<property name="cronExpression">			
-			<value>0 15 */1 * * ?</value>
+			<value>0 */3 * * * ?</value>
 		</property>
 	</bean>
 

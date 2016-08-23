@@ -351,7 +351,13 @@
             <artifactId>commons-pool2</artifactId>
             <version>2.4.2</version>
         </dependency>
-        
+        <dependency>
+			<groupId>com.yangmao</groupId>
+			<artifactId>tbk</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/../yangmao-dal/lib/taobao-sdk-java-auto_1462616566587-20160815.jar</systemPath>
+		</dependency>
     </dependencies>
 
 

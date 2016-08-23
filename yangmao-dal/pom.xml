@@ -25,13 +25,7 @@
         	<version>1.0-SNAPSHOT</version>
 	    </dependency>
 	    
-	    <dependency>
-			<groupId>com.yangmao</groupId>
-			<artifactId>tbk</artifactId>
-			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/taobao-sdk-java-auto_1462616566587-20160815.jar</systemPath>
-		</dependency>
+
 
     </dependencies>
     
