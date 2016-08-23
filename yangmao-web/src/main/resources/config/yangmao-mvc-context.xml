@@ -21,7 +21,7 @@
 	<!--<interceptors>-->
 		<!--<interceptor>-->
 			<!--<mapping path="/admin/**"/>-->
-			<!--<beans:bean class="com.office.rebates.interceptor.LoginInterceptor" />-->
+			<!--<beans:bean class="com.yangmao.interceptor.LoginInterceptor" />-->
 		<!--</interceptor>-->
 	<!--</interceptors>-->
 
@@ -29,7 +29,7 @@
 
 
 
-	<context:component-scan base-package="com.office.rebates">  
+	<context:component-scan base-package="com.yangmao">  
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>  
 	

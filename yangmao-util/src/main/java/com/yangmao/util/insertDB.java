@@ -80,8 +80,10 @@ public class insertDB {
 		            while ((line=br.readLine())!=null) {
 		            	i++;
 		                email=line.trim();
-		                System.out.println("processing line:"+i+" email:"+email);
-		                
+		                //if(i%1000==0){
+		                	System.out.println("processing line:"+i+" email:"+email);
+		                //}
+		                		                
 		                //验证地址是否正确
 		                if(!isNameAdressFormat(email)){
 		                	System.out.println("invalid emial address");
@@ -125,7 +127,7 @@ public class insertDB {
 						System.out.println("fail to close db connection");
 					}			
 			}
-			deleteFile(filename);
+			//deleteFile(filename);
 		}
 		
 	}

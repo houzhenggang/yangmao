@@ -43,5 +43,13 @@
             <generatedKey column="email_id" sqlStatement="MySql" identity="true" />
         </table>
         
+        <table tableName="yangmao_favorites" domainObjectName="YangmaoFavorites">
+            <generatedKey column="yangmao_favorites_id" sqlStatement="MySql" identity="true" />
+        </table>
+        
+        <table tableName="yangmao_favorites_item" domainObjectName="YangmaoFavoritesItem">
+            <generatedKey column="item_id" sqlStatement="MySql" identity="true" />
+        </table>
+        
     </context>
 </generatorConfiguration>
