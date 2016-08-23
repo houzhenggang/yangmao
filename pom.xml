@@ -352,11 +352,11 @@
             <version>2.4.2</version>
         </dependency>
         <dependency>
-			<groupId>com.yangmao</groupId>
+			<groupId>com.taobao</groupId>
 			<artifactId>tbk</artifactId>
 			<version>1.0.0</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/../lib/taobao-sdk-java-auto_1462616566587-20160815.jar</systemPath>
+			<systemPath>${project.basedir}/../yangmao-web/src/main/webapp/WEB-INF/lib/taobao-sdk-java-auto_1462616566587-20160815.jar</systemPath>
 		</dependency>
     </dependencies>
 
@@ -372,13 +372,13 @@
                 </configuration>
             </plugin>
             
-            <plugin>
+<!--             <plugin>
 		       <groupId>org.apache.maven.plugins</groupId>
 		       <artifactId>maven-war-plugin</artifactId>
 		            <configuration>
 		                <webResources>
 		                    <resource>
-		                        <directory>${project.basedir}/../lib</directory>
+		                        <directory>${project.basedir}/src/main/webapp/WEB-INF/lib</directory>
 		                        <targetPath>WEB-INF/lib</targetPath>
 		                        <filtering>true</filtering>
 		                        <includes>
@@ -387,7 +387,7 @@
 		                    </resource>
 		                </webResources>
 		            </configuration>
-		 	</plugin>
+		 	</plugin> -->
         </plugins>
     </build>
 
