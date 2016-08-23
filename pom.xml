@@ -356,7 +356,7 @@
 			<artifactId>tbk</artifactId>
 			<version>1.0.0</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/../yangmao-dal/lib/taobao-sdk-java-auto_1462616566587-20160815.jar</systemPath>
+			<systemPath>${project.basedir}/../lib/taobao-sdk-java-auto_1462616566587-20160815.jar</systemPath>
 		</dependency>
     </dependencies>
 
@@ -378,7 +378,7 @@
 		            <configuration>
 		                <webResources>
 		                    <resource>
-		                        <directory>${project.basedir}/../yangmao-dal/lib</directory>
+		                        <directory>${project.basedir}/../lib</directory>
 		                        <targetPath>WEB-INF/lib</targetPath>
 		                        <filtering>true</filtering>
 		                        <includes>
