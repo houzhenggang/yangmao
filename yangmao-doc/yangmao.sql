@@ -93,11 +93,11 @@ CREATE TABLE `yangmao_favorites_item` (
 
 #邮件模板表
 CREATE TABLE `yangmao_mail_template` (
-  `template_id` bigint NOT NULL  COMMENT '邮件模板ID',
+  `template_id` bigint NOT NULL AUTO_INCREMENT COMMENT '邮件模板ID',
   `name` varchar(50) COMMENT '模板名称，变量{}',
   `title` varchar(100) COMMENT '模板标题,变量{}',
   `content` text COMMENT '模板内容',
-  `section` varchar(50) COMMENT '区段名称',
+  `section` varchar(50) COMMENT '区段名称,就是选品库名称',
   `section_amount` int COMMENT '区段可容纳得商品数量',
   `status` tinyint COMMENT '0：可使用，1:已删除',
   `create_time` datetime comment '创建时间',
@@ -108,7 +108,7 @@ CREATE TABLE `yangmao_mail_template` (
 
 #邮件实例表
 CREATE TABLE `yangmao_mail_instance` (
-  `mail_instance_id` bigint NOT NULL  COMMENT '邮件实例ID',
+  `mail_instance_id` bigint NOT NULL AUTO_INCREMENT COMMENT '邮件实例ID',
   `template_id` bigint COMMENT '邮件模板ID',
   `title` varchar(50) COMMENT '模板名称，变量{}',
   `content` text COMMENT '邮件内容，变量{}',
@@ -123,7 +123,7 @@ CREATE TABLE `yangmao_mail_instance` (
 
 #邮件实例选品表
 CREATE TABLE `yangmao_mail_instance_item` (
-  `instance_item_id` bigint NOT NULL  COMMENT '邮件实例中的商品ID',
+  `instance_item_id` bigint NOT NULL AUTO_INCREMENT COMMENT '邮件实例中的商品ID',
   `mail_instance_id` bigint NOT NULL  COMMENT '邮件实例ID',
   `item_id` bigint COMMENT '选品ID',
   `section` varchar(50) COMMENT '隶属的区段名称',

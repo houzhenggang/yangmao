@@ -51,5 +51,17 @@
             <generatedKey column="item_id" sqlStatement="MySql" identity="true" />
         </table>
         
+        <table tableName="yangmao_mail_template" domainObjectName="YangmaoMailTemplate">
+            <generatedKey column="template_id" sqlStatement="MySql" identity="true" />
+        </table>
+        
+        <table tableName="yangmao_mail_instance" domainObjectName="YangmaoMailInstance">
+            <generatedKey column="mail_instance_id" sqlStatement="MySql" identity="true" />
+        </table>
+        
+        <table tableName="yangmao_mail_instance_item" domainObjectName="YangmaoMailInstanceItem">
+            <generatedKey column="instance_item_id" sqlStatement="MySql" identity="true" />
+        </table>
+        
     </context>
 </generatorConfiguration>
