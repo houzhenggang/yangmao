@@ -47,7 +47,7 @@ public class TopapiTest {
 		req.setUnid("3456");
 		req.setFavoritesId(favoritesId);
 		req.setPageNo(1L);
-		req.setFields("num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url,seller_id,volume,nick,shop_title,zk_final_price_wap,event_start_time,event_end_time,tk_rate,status,type");
+		req.setFields("num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url,seller_id,volume,nick,shop_title,zk_final_price_wap,event_start_time,event_end_time,tk_rate,status,type,click_url");
 		TbkUatmFavoritesItemGetResponse rsp = client.execute(req);
 		if(rsp.isSuccess()){
 			return rsp.getResults();

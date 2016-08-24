@@ -127,7 +127,7 @@ public class insertDB {
 						System.out.println("fail to close db connection");
 					}			
 			}
-			//deleteFile(filename);
+			//;deleteFile(filename);
 		}
 		
 	}

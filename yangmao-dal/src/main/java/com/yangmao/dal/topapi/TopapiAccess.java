@@ -36,12 +36,12 @@ public class TopapiAccess {
 		TaobaoClient client = new DefaultTaobaoClient(url, appkey, appSecret);
 		TbkUatmFavoritesItemGetRequest req = new TbkUatmFavoritesItemGetRequest();
 		req.setPlatform(1L);
-		req.setPageSize(20L);
+		req.setPageSize(300L);
 		req.setAdzoneId(adZoneId);
 		req.setUnid("3456");
 		req.setFavoritesId(favoritesId);
 		req.setPageNo(1L);
-		req.setFields("num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url,seller_id,volume,nick,shop_title,zk_final_price_wap,event_start_time,event_end_time,tk_rate,status,type");
+		req.setFields("num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url,seller_id,volume,nick,shop_title,zk_final_price_wap,event_start_time,event_end_time,tk_rate,status,type,click_url");
 		TbkUatmFavoritesItemGetResponse rsp=null;
 		try {
 			rsp = client.execute(req);
@@ -102,7 +102,7 @@ public class TopapiAccess {
 		TaobaoClient client = new DefaultTaobaoClient(url, appkey, appSecret);
 		TbkUatmFavoritesGetRequest req = new TbkUatmFavoritesGetRequest();
 		req.setPageNo(1L);
-		req.setPageSize(20L);
+		req.setPageSize(200L);
 		req.setFields("favorites_title,favorites_id,type");
 		req.setType(1L);
 		TbkUatmFavoritesGetResponse rsp=null;
