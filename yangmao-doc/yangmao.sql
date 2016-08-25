@@ -131,5 +131,16 @@ CREATE TABLE `yangmao_mail_instance_item` (
   KEY (`mail_instance_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='邮件实例的选品表';
 
-
+#链接点击记录
+CREATE TABLE `yangmao_click` (
+  `click_id` bigint NOT NULL AUTO_INCREMENT COMMENT 'email点击 ID',
+  `email` varchar(200) NOT NULL COMMENT 'email 地址',
+  `mail_instance_id` bigint COMMENT '邮件实例ID',
+  `item_id` bigint COMMENT '选品ID',
+  `create_time` datetime comment '创建时间',
+  PRIMARY KEY (`click_id`),
+  KEY `item_id` (`item_id`),
+  KEY `email` (`email`),
+  KEY `mail_instance_id` (`mail_instance_id`)) 
+  ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='商品点击表';
 

@@ -63,5 +63,9 @@
             <generatedKey column="instance_item_id" sqlStatement="MySql" identity="true" />
         </table>
         
+        <table tableName="yangmao_click" domainObjectName="YangmaoClick">
+            <generatedKey column="click_id" sqlStatement="MySql" identity="true" />
+        </table>
+        
     </context>
 </generatorConfiguration>
