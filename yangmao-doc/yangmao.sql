@@ -51,6 +51,9 @@ CREATE TABLE `yangmao_email` (
     PARTITION p20 VALUES LESS THAN MAXVALUE
 );
 
+ALTER TABLE yangmao_email ADD email_instance_id bigint NOT NULL DEFAULT 0 COMMENT '最后一次发送的邮件实例ID';
+
+
 #淘宝客选品组
 CREATE TABLE `yangmao_favorites` (
   `yangmao_favorites_id` bigint NOT NULL AUTO_INCREMENT COMMENT '选品组ID',
@@ -143,4 +146,30 @@ CREATE TABLE `yangmao_click` (
   KEY `email` (`email`),
   KEY `mail_instance_id` (`mail_instance_id`)) 
   ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='商品点击表';
+  
+ #获取email记录表
+CREATE TABLE `yangmao_email_getting_history` (
+  `history_id` bigint NOT NULL AUTO_INCREMENT COMMENT '历史 ID',
+  `ip_address` varchar(200) COMMENT 'ip地址',
+  `sender_id` bigint COMMENT '发送者 ID',
+  `amount` bigint COMMENT '本次返回email地址数量',
+  `mail_instance_id` bigint COMMENT '本次返回邮件实例ID',
+  `create_time` datetime comment '创建时间',
+  PRIMARY KEY (`history_id`),
+  KEY `create_time` (`create_time`),
+  KEY `ip_address` (`ip_address`,`create_time`),
+  KEY `mail_instance_id` (`mail_instance_id`)) 
+  ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='邮件获取地址表';
 
+#获取email记录表
+CREATE TABLE `yangmao_email_sender` (
+  `sender_id` bigint NOT NULL AUTO_INCREMENT COMMENT '发送者 ID',
+  `name` varchar(200) COMMENT '发送者姓名',
+  `email` varchar(200) COMMENT '邮箱地址',
+  `password` varchar(200) COMMENT '邮箱地址',
+  `status` tinyint COMMENT '0：可使用，1:已下架',
+  PRIMARY KEY (`sender_id`),
+  KEY `email` (`email`))
+  ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='发送者表';
+  
+  insert into yangmao_email_sender(name,email,password,status) values('每日羊毛情报','yangmao1@92yangmao.com','yangmao_1',0);
