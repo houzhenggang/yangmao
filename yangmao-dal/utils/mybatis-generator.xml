@@ -42,6 +42,12 @@
         <table tableName="yangmao_email" domainObjectName="YangmaoEmail">
             <generatedKey column="email_id" sqlStatement="MySql" identity="true" />
         </table>
+        <table tableName="yangmao_template" domainObjectName="YangmaoTemplate">
+            <generatedKey column="template_id" sqlStatement="MySql" identity="true" />
+        </table>
+        <table tableName="yangmao_template_item" domainObjectName="YangmaoTemplateItem">
+            <generatedKey column="template_item_id" sqlStatement="MySql" identity="true" />
+        </table>
         
         <table tableName="yangmao_favorites" domainObjectName="YangmaoFavorites">
             <generatedKey column="yangmao_favorites_id" sqlStatement="MySql" identity="true" />
