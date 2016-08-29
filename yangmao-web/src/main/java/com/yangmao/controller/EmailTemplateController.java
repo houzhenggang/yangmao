@@ -1,6 +1,7 @@
 package com.yangmao.controller;
 
 import com.yangmao.dal.dataobj.YangmaoMailTemplate;
+import com.yangmao.model.admin.dto.MailTemplateModel;
 import com.yangmao.model.common.Page;
 import com.yangmao.service.EmailTemplateService;
 import org.slf4j.Logger;
@@ -64,7 +65,7 @@ public class EmailTemplateController {
      */
     @RequestMapping(RouteKey.EMAIL_TEMPLATE_LIST)
     public void emailTemplateList(Page page,String name,Model model){
-        List<YangmaoMailTemplate> templateList = new ArrayList<>();
+        List<MailTemplateModel> templateList = new ArrayList<>();
         try {
             templateList =  emailTemplateService.getTemplateListForPage(page,name);
         } catch (Exception e) {

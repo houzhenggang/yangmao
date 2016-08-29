@@ -1,5 +1,6 @@
 package com.yangmao.service.impl;
 
+import com.yangmao.dal.dao.NewYangmaoMailTemplateMapper;
 import com.yangmao.dal.dao.YangmaoEmailMapper;
 import com.yangmao.dal.dao.YangmaoMailTemplateMapper;
 import com.yangmao.dal.dataobj.YangmaoMailTemplate;
@@ -10,9 +11,7 @@ import com.yangmao.service.EmailTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * 邮件模板服务
@@ -26,6 +25,12 @@ public class EmailTemplateServiceImpl implements EmailTemplateService {
      */
     @Autowired
     private YangmaoMailTemplateMapper templateMapper;
+
+    /**
+     * 新邮件模板dao
+     */
+    @Autowired
+    private NewYangmaoMailTemplateMapper newYangmaoMailTemplateMapper;
 
     /**
      * 邮件模板
@@ -74,10 +79,22 @@ public class EmailTemplateServiceImpl implements EmailTemplateService {
         return 0;
     }
 
+    /**
+     * 获取邮件模板列表
+     * @param page 分页
+     * @param name 模板名称
+     * @return
+     * @throws Exception
+     */
     @Override
     public List<MailTemplateModel> getTemplateListForPage(Page page, String name) throws Exception {
         List<MailTemplateModel> mailTemplateModels = new ArrayList<>();
-
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("name", name);
+        page.setTotalElements(newYangmaoMailTemplateMapper.countEmailTemplateListForPage(map));
+        map.put("start", page.getNumber() * page.getSize());
+        map.put("size", page.getSize());
+        mailTemplateModels = newYangmaoMailTemplateMapper.selectEmailTemplateListForPage(map);
         return mailTemplateModels;
     }
 
