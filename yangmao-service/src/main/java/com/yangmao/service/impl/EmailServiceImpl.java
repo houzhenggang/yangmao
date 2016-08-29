@@ -25,6 +25,8 @@ import com.yangmao.dal.dao.YangmaoEmailMapper;
 import com.yangmao.dal.dao.YangmaoEmailSenderMapper;
 import com.yangmao.dal.dao.YangmaoMailInstanceMapper;
 import com.yangmao.dal.dataobj.YangmaoEmail;
+import com.yangmao.dal.dataobj.YangmaoEmailExample;
+import com.yangmao.dal.dataobj.YangmaoEmailGettingHistory;
 import com.yangmao.dal.dataobj.YangmaoEmailGettingHistoryExample;
 import com.yangmao.dal.dataobj.YangmaoEmailSender;
 import com.yangmao.dal.dataobj.YangmaoEmailSenderExample;
@@ -136,8 +138,10 @@ public class EmailServiceImpl implements EmailService{
 		
 		List<YangmaoEmail> emails=newYangmaoEmailMapper.getAndLockEmails(map);
 		List<String> emailStingList=new ArrayList<String>();
+		List<Long> emailIdList=new ArrayList<Long>();
 		for(YangmaoEmail email:emails){
 			emailStingList.add(email.getEmail());
+			emailIdList.add(email.getEmailId());
 		}
 		GetEmailsResult getEmailsResult=new GetEmailsResult();
 		getEmailsResult.setEmailContent(mailInstance.getContent());
@@ -146,6 +150,24 @@ public class EmailServiceImpl implements EmailService{
 		getEmailsResult.setSenderEmail(sender.getEmail());
 		getEmailsResult.setSenderName(sender.getName());
 		getEmailsResult.setSenderPassword(sender.getPassword());
+		
+		//更新email表
+		YangmaoEmail record=new YangmaoEmail();
+		record.setLastEmailTime(now);
+		record.setEmailInstanceId(mailInstance.getMailInstanceId());
+		YangmaoEmailExample example=new YangmaoEmailExample();
+		example.createCriteria().andEmailIdIn(emailIdList);		
+		YangmaoEmailMapper.updateByExampleSelective(record, example);
+		
+		//插入获取记录
+		YangmaoEmailGettingHistory history=new YangmaoEmailGettingHistory();
+		history.setAmount(emailIdList.size());
+		history.setCreateTime(now);
+		history.setIpAddress(ipAddress);
+		history.setMailInstanceId(mailInstance.getMailInstanceId());
+		yangmaoEmailGettingHistoryMapper.insert(history);
+		
+		logger.info("got mail list:"+JSON.toJSONString(getEmailsResult));
 		return getEmailsResult;
 
 	}

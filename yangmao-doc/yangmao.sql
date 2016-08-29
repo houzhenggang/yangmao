@@ -159,7 +159,7 @@ CREATE TABLE `yangmao_email_getting_history` (
   `history_id` bigint NOT NULL AUTO_INCREMENT COMMENT '历史 ID',
   `ip_address` varchar(200) COMMENT 'ip地址',
   `sender_id` bigint COMMENT '发送者 ID',
-  `amount` bigint COMMENT '本次返回email地址数量',
+  `amount` int COMMENT '本次返回email地址数量',
   `mail_instance_id` bigint COMMENT '本次返回邮件实例ID',
   `create_time` datetime comment '创建时间',
   PRIMARY KEY (`history_id`),
