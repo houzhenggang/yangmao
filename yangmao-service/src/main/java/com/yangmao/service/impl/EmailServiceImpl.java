@@ -150,6 +150,7 @@ public class EmailServiceImpl implements EmailService{
 		getEmailsResult.setSenderEmail(sender.getEmail());
 		getEmailsResult.setSenderName(sender.getName());
 		getEmailsResult.setSenderPassword(sender.getPassword());
+		getEmailsResult.setSenderHost(sender.getHost());
 		
 		//更新email表
 		YangmaoEmail record=new YangmaoEmail();

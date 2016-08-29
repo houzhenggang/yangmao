@@ -177,9 +177,10 @@ CREATE TABLE `yangmao_email_sender` (
   `name` varchar(200) COMMENT '发送者姓名',
   `email` varchar(200) COMMENT '邮箱地址',
   `password` varchar(200) COMMENT '邮箱地址',
+  `host` varchar(100) COMMENT '服务器地址',
   `status` tinyint COMMENT '0：可使用，1:已下架',
   PRIMARY KEY (`sender_id`),
   KEY `email` (`email`))
   ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='发送者表';
   
-  insert into yangmao_email_sender(name,email,password,status) values('每日羊毛情报','yangmao1@92yangmao.com','yangmao_1',0);
+  insert into yangmao_email_sender(name,email,password,status,host) values('每日羊毛情报','yangmao1@92yangmao.com','yangmao_1',0,'smtp.92yangmao.com');

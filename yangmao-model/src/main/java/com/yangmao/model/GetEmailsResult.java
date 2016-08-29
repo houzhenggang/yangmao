@@ -50,6 +50,13 @@ public class GetEmailsResult implements Serializable{
 	private String senderName;
 	private String senderEmail;
 	private String senderPassword;
+	public String getSenderHost() {
+		return senderHost;
+	}
+	public void setSenderHost(String senderHost) {
+		this.senderHost = senderHost;
+	}
+	private String senderHost;
 	private List<String> receivers;
 	
 	
