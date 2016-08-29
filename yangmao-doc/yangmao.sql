@@ -110,6 +110,7 @@ CREATE TABLE `yangmao_mail_template` (
 CREATE TABLE `yangmao_template_section` (
   `section_id` bigint NOT NULL AUTO_INCREMENT COMMENT '邮件模板分区ID',
   `template_id` bigint NOT NULL COMMENT '邮件模板ID',
+  `favorites_id` bigint COMMENT '对应选品组ID',
   `section` varchar(50) COMMENT '区段名称,就是选品库名称',
   `section_amount` int COMMENT '区段可容纳得商品数量',
   PRIMARY KEY (`section_id`),
