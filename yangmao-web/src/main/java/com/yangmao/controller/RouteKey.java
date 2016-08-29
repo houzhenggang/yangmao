@@ -48,17 +48,19 @@ public class RouteKey {
      */
     public static final String ADMIN = "/admin";
 
-    public static final String ADD_EMAIL_TEMPLATE = "/email/add_email_template.html";
+    public static final String ADD_EMAIL_TEMPLATE = "/template/add_email_template.html";
 
-    public static final String INSERT_EMAIL_TEMPLATE = "/email/insert_email_template.html";
+    public static final String INSERT_EMAIL_TEMPLATE = "/template/insert_email_template.html";
 
-    public static final String MODIFY_EMAIL_TEMPLATE = "/email/modify_email_template.html";
+    public static final String MODIFY_EMAIL_TEMPLATE = "/template/modify_email_template.html";
 
-    public static final String UPDATE_EMAIL_TEMPLATE = "/email/update_email_template.html";
+    public static final String UPDATE_EMAIL_TEMPLATE = "/template/update_email_template.html";
 
-    public static final String EMAIL_TEMPLATE_LIST = "/email/email_template_list.html";
+    public static final String EMAIL_TEMPLATE_LIST = "/template/email_template_list.html";
 
-    public static final String DELETE_EMAIL_TEMPALTE = "/email/delete_email_template.html";
+    public static final String DELETE_EMAIL_TEMPLATE = "/template/delete_email_template.html";
+
+    public static final String GET_FAVORITES = "/get_favorites";
 
 
 }

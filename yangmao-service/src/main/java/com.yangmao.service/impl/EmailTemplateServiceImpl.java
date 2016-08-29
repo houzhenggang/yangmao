@@ -1,13 +1,16 @@
 package com.yangmao.service.impl;
 
+import com.yangmao.dal.dao.NewYangmaoFavoritesMapper;
 import com.yangmao.dal.dao.NewYangmaoMailTemplateMapper;
 import com.yangmao.dal.dao.YangmaoEmailMapper;
 import com.yangmao.dal.dao.YangmaoMailTemplateMapper;
+import com.yangmao.dal.dataobj.YangmaoFavorites;
 import com.yangmao.dal.dataobj.YangmaoMailTemplate;
 import com.yangmao.model.admin.dto.MailTemplateModel;
 import com.yangmao.model.common.Constants;
 import com.yangmao.model.common.Page;
 import com.yangmao.service.EmailTemplateService;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +34,24 @@ public class EmailTemplateServiceImpl implements EmailTemplateService {
      */
     @Autowired
     private NewYangmaoMailTemplateMapper newYangmaoMailTemplateMapper;
+
+    /**
+     * 品类dao
+     */
+    @Autowired
+    private NewYangmaoFavoritesMapper newYangmaoFavoritesMapper;
+
+    /**
+     * 获取产品组
+     * @return
+     */
+    @Override
+    public List<YangmaoFavorites> getFavoritesList() {
+        List<YangmaoFavorites> favoritesList = new ArrayList<>();
+        Map<String,Object> map = new HashedMap();
+        favoritesList = newYangmaoFavoritesMapper.selectFavoritesList(map);
+        return favoritesList;
+    }
 
     /**
      * 邮件模板

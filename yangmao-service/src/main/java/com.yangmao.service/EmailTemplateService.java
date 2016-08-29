@@ -1,5 +1,6 @@
 package com.yangmao.service;
 
+import com.yangmao.dal.dataobj.YangmaoFavorites;
 import com.yangmao.dal.dataobj.YangmaoMailTemplate;
 import com.yangmao.model.admin.dto.MailTemplateModel;
 import com.yangmao.model.common.Page;
@@ -10,6 +11,12 @@ import java.util.List;
  * Created by liyongfeng on 16/8/24.
  */
 public interface EmailTemplateService {
+
+    /**
+     * 获取产品类列表
+     * @return
+     */
+    List<YangmaoFavorites> getFavoritesList() throws Exception;
 
     /**
      * 保存邮件模板

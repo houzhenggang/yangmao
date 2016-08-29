@@ -1,5 +1,6 @@
 package com.yangmao.controller;
 
+import com.yangmao.dal.dataobj.YangmaoFavorites;
 import com.yangmao.dal.dataobj.YangmaoMailTemplate;
 import com.yangmao.model.admin.dto.MailTemplateModel;
 import com.yangmao.model.common.Page;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +41,30 @@ public class EmailTemplateController {
      * 添加模板
      */
     @RequestMapping(RouteKey.ADD_EMAIL_TEMPLATE)
-    public void addEmailTemplate(){
+    public void addEmailTemplate(Model model){
+        List<YangmaoFavorites> favoritesList = new ArrayList<>();
+        try {
+            favoritesList = emailTemplateService.getFavoritesList();
+        } catch (Exception e) {
+            logger.error("EmailTemplateController.addEmailTemplate",e);
+        }
+        model.addAttribute("favorites",favoritesList);
+    }
 
+    /**
+     * 获取产品组
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(RouteKey.GET_FAVORITES)
+    public List<YangmaoFavorites> getFavorites(){
+        List<YangmaoFavorites> favoritesList = new ArrayList<>();
+        try {
+            favoritesList = emailTemplateService.getFavoritesList();
+        } catch (Exception e) {
+            logger.error("EmailTemplateController.addEmailTemplate",e);
+        }
+        return favoritesList;
     }
 
     /**
@@ -111,7 +135,7 @@ public class EmailTemplateController {
      * 通过模板id删除模板
      * @return
      */
-    @RequestMapping(RouteKey.DELETE_EMAIL_TEMPALTE)
+    @RequestMapping(RouteKey.DELETE_EMAIL_TEMPLATE)
     public String deleteEmailTemplate(long templateId) {
         try {
            int result = emailTemplateService.deleteEmailTemplate(templateId);
@@ -120,5 +144,6 @@ public class EmailTemplateController {
         }
         return "redirect:email_template_list.html";
     }
+
 
 }
