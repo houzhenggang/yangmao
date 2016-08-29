@@ -131,6 +131,8 @@ CREATE TABLE `yangmao_mail_instance` (
    KEY (`template_id`),
    KEY (`expire_time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='邮件实例表';
+insert into yangmao_mail_instance(template_id,title,content,status,expire_time,create_time, last_update_time)
+values(1,'测试','你好',0,'2016-08-28 00:00:00','2016-08-28 00:00:00','2016-08-28 00:00:00'); 
 
 #邮件实例选品表
 CREATE TABLE `yangmao_mail_instance_item` (

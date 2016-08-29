@@ -100,8 +100,8 @@ public class EmailServiceImpl implements EmailService{
 		}else{
 			Integer size=mailInstances.size();
 			Long m=number%size.longValue();
-			mailInstance=mailInstances.get(size.intValue());
-			mailInstance=mailInstances.get(0);
+			mailInstance=mailInstances.get(m.intValue());
+			//mailInstance=mailInstances.get(0);
 		}
 		
 		
@@ -112,7 +112,7 @@ public class EmailServiceImpl implements EmailService{
 		YangmaoEmailSender sender=null;
 		if(senders==null||senders.isEmpty()){
 			logger.info("no valid mail sender exist");
-			throw new YangmaoException(Messages.NO_VALID_MAILS_CODE,Messages.NO_VALID_MAILS_MSG);	
+			throw new YangmaoException(Messages.NO_VALID_SENDER_CODE,Messages.NO_VALID_SENDER_MSG);	
 		}else{//随机选一个sender
 			Integer size=senders.size();
 			Long m=number%size.longValue();
