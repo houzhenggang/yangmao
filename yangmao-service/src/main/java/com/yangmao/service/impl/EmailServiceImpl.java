@@ -92,7 +92,7 @@ public class EmailServiceImpl implements EmailService{
 		yangmaoMailInstanceExample.createCriteria().andStatusEqualTo(Constants.EMAIL_STATUS_NORMAL)
 													.andExpireTimeGreaterThan(now);
 		yangmaoMailInstanceExample.setOrderByClause("mail_instance_id desc");
-		List<YangmaoMailInstance> mailInstances=yangmaoMailInstanceMapper.selectByExample(yangmaoMailInstanceExample);
+		List<YangmaoMailInstance> mailInstances=yangmaoMailInstanceMapper.selectByExampleWithBLOBs(yangmaoMailInstanceExample);
 		YangmaoMailInstance mailInstance=null;
 		if(mailInstances==null||mailInstances.isEmpty()){
 			logger.info("no valid mail instance exist");
