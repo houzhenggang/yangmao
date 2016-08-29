@@ -55,10 +55,14 @@
             <generatedKey column="template_id" sqlStatement="MySql" identity="true" />
         </table>
         
+        <table tableName="yangmao_template_section" domainObjectName="YangmaoTemplateSection">
+            <generatedKey column="section_id" sqlStatement="MySql" identity="true" />
+        </table>
+        
         <table tableName="yangmao_mail_instance" domainObjectName="YangmaoMailInstance">
             <generatedKey column="mail_instance_id" sqlStatement="MySql" identity="true" />
         </table>
-        
+       
         <table tableName="yangmao_mail_instance_item" domainObjectName="YangmaoMailInstanceItem">
             <generatedKey column="instance_item_id" sqlStatement="MySql" identity="true" />
         </table>
