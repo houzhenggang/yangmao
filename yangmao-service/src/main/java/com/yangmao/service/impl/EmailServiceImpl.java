@@ -116,7 +116,7 @@ public class EmailServiceImpl implements EmailService{
 		}else{//随机选一个sender
 			Integer size=senders.size();
 			Long m=number%size.longValue();
-			sender=senders.get(size.intValue());
+			sender=senders.get(m.intValue());
 		}
 		
 		
