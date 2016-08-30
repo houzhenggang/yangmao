@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="yangmao-web:war">
+    <output-path>$PROJECT_DIR$/yangmao-web/target</output-path>
+    <root id="archive" name="yangmao-web-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="yangmao-web:war exploded" />
+    </root>
+  </artifact>
+</component>

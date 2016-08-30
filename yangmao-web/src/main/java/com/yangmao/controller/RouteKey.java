@@ -27,23 +27,40 @@ public class RouteKey {
     public static final String WEB_INDEX = "/index.html";
 
     public static final String PREFIX_AJAX = "/ajax";
-    
+
     public static final String GETTING_EMAILS = "/get_emails";
-    
+
     public static final String REBATES_USER = "/user";
-    public static final String REGISTER_USER = "/register";   
+    public static final String REGISTER_USER = "/register";
     public static final String LOGIN = "/login";
 
 
     //登录
     public static final String DO_LOGIN = "/login.html";
     public static final String DO_LOGOUT = "/logout.html";
-    
+
     //商品
     public static final String COMMODITY = "/commodity";
     public static final String REDIRECT = "/redirect.html";
 
+    /**
+     * 管理员
+     */
+    public static final String ADMIN = "/admin";
 
-    
+    public static final String ADD_EMAIL_TEMPLATE = "/template/add_email_template.html";
+
+    public static final String INSERT_EMAIL_TEMPLATE = "/template/insert_email_template.html";
+
+    public static final String MODIFY_EMAIL_TEMPLATE = "/template/modify_email_template.html";
+
+    public static final String UPDATE_EMAIL_TEMPLATE = "/template/update_email_template.html";
+
+    public static final String EMAIL_TEMPLATE_LIST = "/template/email_template_list.html";
+
+    public static final String DELETE_EMAIL_TEMPLATE = "/template/delete_email_template.html";
+
+    public static final String GET_FAVORITES = "/get_favorites";
+
 
 }
