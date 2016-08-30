@@ -1,4 +1,4 @@
-package com.yangmao.controller;
+package com.yangmao.controller.admin;
 
 import com.yangmao.dal.dataobj.YangmaoFavorites;
 import com.yangmao.dal.dataobj.YangmaoMailTemplate;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import com.yangmao.controller.RouteKey;
 import java.util.ArrayList;
 import java.util.List;
 
