@@ -35,14 +35,14 @@ public class EmailController {
     //创建一个新的订单
     @ResponseBody
 	@RequestMapping(value = RouteKey.GETTING_EMAILS, method = RequestMethod.GET)
-	public ResultCode<GetEmailsResult> createRebatesOrder(HttpServletRequest httpServletRequest) {
+	public ResultCode<GetEmailsResult> createRebatesOrder(String isTest,HttpServletRequest httpServletRequest) {
 		ResultCode<GetEmailsResult> result=new ResultCode<GetEmailsResult>();		
 		//check params
 		String ipAddr=httpServletRequest.getRemoteAddr();
 		
 		//create the order
 		try {
-			GetEmailsResult getEmailsResult=emailService.getEmailsResult(ipAddr);
+			GetEmailsResult getEmailsResult=emailService.getEmailsResult(ipAddr,isTest);
 			result.setData(getEmailsResult);
 		} catch (YangmaoException e) {
 			result.setErrCode(e.getErrCode());

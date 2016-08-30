@@ -65,7 +65,7 @@ public class EmailServiceImpl implements EmailService{
 
 	
 	@Override
-	public GetEmailsResult getEmailsResult(String ipAddress) throws YangmaoException {
+	public GetEmailsResult getEmailsResult(String ipAddress,String isTest) throws YangmaoException {
 		Date now=new Date();
 		Long number=now.getTime();
 		String date=DateUtil.formatDate(now,DateUtil.FORMAT_DEFAULT);
@@ -152,21 +152,24 @@ public class EmailServiceImpl implements EmailService{
 		getEmailsResult.setSenderPassword(sender.getPassword());
 		getEmailsResult.setSenderHost(sender.getHost());
 		
-		//更新email表
-		YangmaoEmail record=new YangmaoEmail();
-		record.setLastEmailTime(now);
-		record.setEmailInstanceId(mailInstance.getMailInstanceId());
-		YangmaoEmailExample example=new YangmaoEmailExample();
-		example.createCriteria().andEmailIdIn(emailIdList);		
-		YangmaoEmailMapper.updateByExampleSelective(record, example);
 		
-		//插入获取记录
-		YangmaoEmailGettingHistory history=new YangmaoEmailGettingHistory();
-		history.setAmount(emailIdList.size());
-		history.setCreateTime(now);
-		history.setIpAddress(ipAddress);
-		history.setMailInstanceId(mailInstance.getMailInstanceId());
-		yangmaoEmailGettingHistoryMapper.insert(history);
+		if(!"Y".equalsIgnoreCase(isTest)){//非测试，需要更新数据
+			//更新email表
+			YangmaoEmail record=new YangmaoEmail();
+			record.setLastEmailTime(now);
+			record.setEmailInstanceId(mailInstance.getMailInstanceId());
+			YangmaoEmailExample example=new YangmaoEmailExample();
+			example.createCriteria().andEmailIdIn(emailIdList);		
+			YangmaoEmailMapper.updateByExampleSelective(record, example);
+			
+			//插入获取记录
+			YangmaoEmailGettingHistory history=new YangmaoEmailGettingHistory();
+			history.setAmount(emailIdList.size());
+			history.setCreateTime(now);
+			history.setIpAddress(ipAddress);
+			history.setMailInstanceId(mailInstance.getMailInstanceId());
+			yangmaoEmailGettingHistoryMapper.insert(history);
+		}
 		
 		logger.info("got mail list:"+JSON.toJSONString(getEmailsResult));
 		return getEmailsResult;
