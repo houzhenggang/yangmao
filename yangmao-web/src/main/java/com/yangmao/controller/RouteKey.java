@@ -60,7 +60,7 @@ public class RouteKey {
 
     public static final String DELETE_EMAIL_TEMPLATE = "/template/delete_email_template.html";
 
-    public static final String GET_FAVORITES = "/get_favorites";
+    public static final String GET_FAVORITES = "/template/get_favorites";
 
 
 }

@@ -133,8 +133,10 @@
                 $('#form1').validationEngine({scroll:false,focusFirstField:false});
             });
         </script>
+        <!--template  js-->
+        <script type="text/javascript" src="${path}/wrap/template/template.js"></script>
 
-        <#nested>
+    <#nested>
     </body>
 </html>
 
