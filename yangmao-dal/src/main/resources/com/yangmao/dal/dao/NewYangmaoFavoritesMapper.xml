@@ -15,7 +15,7 @@
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
 
-  <select id="selectFavoritesList" parameterType="java.util.Map" resultMap="BaseResultMap">
+  <select id="selectFavoritesList" resultMap="BaseResultMap">
       select favorites_id,title from yangmao_favorites
   </select>
 </mapper>

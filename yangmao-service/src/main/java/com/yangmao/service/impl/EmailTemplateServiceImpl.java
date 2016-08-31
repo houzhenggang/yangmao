@@ -48,8 +48,7 @@ public class EmailTemplateServiceImpl implements EmailTemplateService {
     @Override
     public List<YangmaoFavorites> getFavoritesList() {
         List<YangmaoFavorites> favoritesList = new ArrayList<>();
-        Map<String,Object> map = new HashedMap();
-        favoritesList = newYangmaoFavoritesMapper.selectFavoritesList(map);
+        favoritesList = newYangmaoFavoritesMapper.selectFavoritesList();
         return favoritesList;
     }
 
