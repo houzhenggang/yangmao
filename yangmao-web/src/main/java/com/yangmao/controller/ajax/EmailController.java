@@ -32,13 +32,14 @@ public class EmailController {
     
     static Logger logger = LoggerFactory.getLogger(EmailController.class);
 	
-    //创建一个新的订单
+    //获取发邮件信息
     @ResponseBody
 	@RequestMapping(value = RouteKey.GETTING_EMAILS, method = RequestMethod.GET)
-	public ResultCode<GetEmailsResult> createRebatesOrder(String isTest,HttpServletRequest httpServletRequest) {
+	public ResultCode<GetEmailsResult> getEmails(String isTest,HttpServletRequest httpServletRequest) {
 		ResultCode<GetEmailsResult> result=new ResultCode<GetEmailsResult>();		
 		//check params
-		String ipAddr=httpServletRequest.getRemoteAddr();
+		//String ipAddr=httpServletRequest.getRemoteAddr();
+		String ipAddr = httpServletRequest.getHeader("X-Real-IP");
 		
 		//create the order
 		try {

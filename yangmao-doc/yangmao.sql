@@ -183,4 +183,4 @@ CREATE TABLE `yangmao_email_sender` (
   KEY `email` (`email`))
   ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='发送者表';
   
-  insert into yangmao_email_sender(name,email,password,status,host) values('每日羊毛情报','yangmao1@92yangmao.com','yangmao_1',0,'smtp.92yangmao.com');
+  insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao1@92yangmao.com','yangmao_1',0,'smtp.92yangmao.com');

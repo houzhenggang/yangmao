@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
 import com.yangmao.service.EmailService;
+import com.yangmao.util.Base64;
 import com.yangmao.util.DateUtil;
 import com.yangmao.util.StringUtil;
 import com.yangmao.dal.dao.NewYangmaoEmailMapper;
@@ -149,7 +150,13 @@ public class EmailServiceImpl implements EmailService{
 		getEmailsResult.setReceivers(emailStingList);
 		getEmailsResult.setSenderEmail(sender.getEmail());
 		getEmailsResult.setSenderName(sender.getName());
-		getEmailsResult.setSenderPassword(sender.getPassword());
+		if(sender.getPassword()!=null){
+			byte[] bytes = sender.getPassword().getBytes();
+			String base64password = Base64.encodeBytes(bytes);
+			getEmailsResult.setSenderPassword(base64password);
+		}
+		
+		
 		getEmailsResult.setSenderHost(sender.getHost());
 		
 		
