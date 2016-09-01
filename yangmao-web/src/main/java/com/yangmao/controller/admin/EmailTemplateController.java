@@ -72,9 +72,9 @@ public class EmailTemplateController {
      * @return
      */
     @RequestMapping(RouteKey.INSERT_EMAIL_TEMPLATE)
-    public String insertEmailTemplate(YangmaoMailTemplate template){
+    public String insertEmailTemplate(YangmaoMailTemplate template,String[] favoritesId,String[] amount){
         try {
-            int result = emailTemplateService.insertEmailTemplate(template);
+            int result = emailTemplateService.insertEmailTemplate(template,favoritesId,amount);
         } catch (Exception e) {
             logger.error("EmailTemplateController.insertEmailTemplate",e);
         }
