@@ -102,3 +102,20 @@ function setClassById(id,atrClass){
         $("#"+id).prop("class",atrClass);
     }
 }
+
+/**
+ * 错误提示
+ */
+function alertMessage(code) {
+    var key = {
+        "106": "请填写账号密码",
+        "104": "请重新登录账户",
+        "112": "账户已存在",
+        "unknow": "#" + code
+    }
+    if (key[code]) message = key[code];
+    else message = key.unknow;
+    if(code != 0){
+        messageBox("错误提示",message);
+    }
+}

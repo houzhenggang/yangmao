@@ -1,11 +1,9 @@
 package com.yangmao.service.impl;
 
-import com.yangmao.dal.dao.NewYangmaoFavoritesMapper;
-import com.yangmao.dal.dao.NewYangmaoMailTemplateMapper;
-import com.yangmao.dal.dao.YangmaoEmailMapper;
-import com.yangmao.dal.dao.YangmaoMailTemplateMapper;
+import com.yangmao.dal.dao.*;
 import com.yangmao.dal.dataobj.YangmaoFavorites;
 import com.yangmao.dal.dataobj.YangmaoMailTemplate;
+import com.yangmao.dal.dataobj.YangmaoTemplateSection;
 import com.yangmao.model.admin.dto.MailTemplateModel;
 import com.yangmao.model.common.Constants;
 import com.yangmao.model.common.Page;
@@ -13,6 +11,7 @@ import com.yangmao.service.EmailTemplateService;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -42,16 +41,28 @@ public class EmailTemplateServiceImpl implements EmailTemplateService {
     private NewYangmaoFavoritesMapper newYangmaoFavoritesMapper;
 
     /**
+     * 品类组dao
+     */
+    @Autowired
+    private YangmaoFavoritesMapper favoritesMapper;
+
+    /**
+     * 品类模板dao
+     */
+    @Autowired
+    private YangmaoTemplateSectionMapper sectionMapper;
+
+    /**
      * 获取产品组
      * @return
      */
     @Override
     public List<YangmaoFavorites> getFavoritesList() {
         List<YangmaoFavorites> favoritesList = new ArrayList<>();
-        Map<String,Object> map = new HashedMap();
-        favoritesList = newYangmaoFavoritesMapper.selectFavoritesList(map);
+        favoritesList = newYangmaoFavoritesMapper.selectFavoritesList();
         return favoritesList;
     }
+
 
     /**
      * 邮件模板
@@ -61,13 +72,23 @@ public class EmailTemplateServiceImpl implements EmailTemplateService {
      * @throws Exception
      */
     @Override
-    public int insertEmailTemplate(YangmaoMailTemplate template) throws Exception {
+    @Transactional(value="yangmaoTransactionManager", rollbackFor = Exception.class)
+    public int insertEmailTemplate(YangmaoMailTemplate template,String[] favoritesIds,String[] amount) throws Exception {
         int result = 0;
         Date date = new Date();
         template.setCreateTime(date);
         template.setLastUpdateTime(date);
         template.setStatus(Constants.TEMPLATE_STATUS_NORMAL);
         result = templateMapper.insert(template);
+        for(int i = 0 ;i<favoritesIds.length;i++){
+            YangmaoTemplateSection section = new YangmaoTemplateSection();
+            String[] str = favoritesIds[i].split("-");
+            section.setFavoritesId(Long.parseLong(str[0]));
+            section.setSection(str[1]);
+            section.setSectionAmount(Integer.parseInt(amount[i]));
+            section.setTemplateId(template.getTemplateId());
+            sectionMapper.insert(section);
+        }
         return result;
     }
 

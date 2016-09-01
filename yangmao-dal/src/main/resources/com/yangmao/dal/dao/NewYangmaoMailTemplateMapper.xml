@@ -19,7 +19,7 @@
   </resultMap>
 
   <select id="selectEmailTemplateListForPage" parameterType="java.util.Map" resultMap="BaseResultMap">
-    select template_id,name,title,status create_time
+    select template_id,name,title,status,create_time
     from yangmao.yangmao_mail_template
     where status != 1
     <if test="name != null and name != ''">

@@ -23,7 +23,7 @@ public interface EmailTemplateService {
      * @param template 邮件模板实体
      * @return
      */
-    int insertEmailTemplate(YangmaoMailTemplate template) throws Exception;
+    int insertEmailTemplate(YangmaoMailTemplate template,String[] favoritesId,String[] amount) throws Exception;
 
     /**
      * 通过id查询邮件模板

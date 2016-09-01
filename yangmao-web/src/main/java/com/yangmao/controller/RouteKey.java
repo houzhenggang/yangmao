@@ -60,7 +60,16 @@ public class RouteKey {
 
     public static final String DELETE_EMAIL_TEMPLATE = "/template/delete_email_template.html";
 
-    public static final String GET_FAVORITES = "/get_favorites";
+    public static final String GET_FAVORITES = "/template/get_favorites";
 
+    public static final String ADD_INSTANCE_EMAIL = "/instance/add_instance_email.html";
+
+    public static final String INSERT_INSTANCE_EMAIL = "/instance/insert_instance_email.html";
+
+    public static final String MODIFY_INSTANCE_EMAIL = "/instance/modify_instance_email.html";
+
+    public static final String UPDATE_INSTANCE_EMAIL = "/instance/update_instance_email.html";
+
+    public static final String INSTANCE_EMAIL_LIST = "/instance/instance_email_list.html";
 
 }

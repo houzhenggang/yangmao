@@ -14,9 +14,8 @@ public interface NewYangmaoFavoritesMapper {
 
     /**
      * 获取品类组列表
-     * @param map 条件
      * @return
      */
-    public List<YangmaoFavorites> selectFavoritesList(Map<String,Object> map);
+    public List<YangmaoFavorites> selectFavoritesList();
 
 }
