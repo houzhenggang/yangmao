@@ -4,7 +4,7 @@ package com.yangmao.model.exception;
  * crud简单操作异常
  * Created by liyongfeng on 16/8/26.
  */
-public class TemplateException extends RuntimeException {
+public class AdminServiceException extends RuntimeException {
 
     /**
      * 错误编码
@@ -16,7 +16,7 @@ public class TemplateException extends RuntimeException {
      */
     private String errMessage;
 
-    public TemplateException(int errCode, String errMessage){
+    public AdminServiceException(int errCode, String errMessage){
         super(errMessage);
         this.errCode = errCode;
         this.errMessage = errMessage;

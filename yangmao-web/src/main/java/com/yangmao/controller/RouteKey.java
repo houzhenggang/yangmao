@@ -72,4 +72,10 @@ public class RouteKey {
 
     public static final String INSTANCE_EMAIL_LIST = "/instance/instance_email_list.html";
 
+    public static final String GET_COMMODITY_LIST = "/instance/get_commodity_list";
+
+    public static final String GET_COMMODITY_LIST_BY_ITEM_ID = "/instance/get_commodity_list_by_item_id";
+
+    public static final String GET_REPLACE_KEY_VALUE_LIST = "/instance/get_replace_key_value_list";
+
 }

@@ -23,7 +23,8 @@ import com.yangmao.dal.dataobj.YangmaoFavorites;
 import com.yangmao.dal.dataobj.YangmaoFavoritesItem;
 import com.yangmao.util.PropertiesUtils;
 
-public class TopapiAccess {
+public class
+TopapiAccess {
 	
 	static String appkey=PropertiesUtils.prop.get("app_key");
 	static String appSecret=PropertiesUtils.prop.get("app_secret");

@@ -184,3 +184,29 @@ CREATE TABLE `yangmao_email_sender` (
   ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='发送者表';
   
   insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao1@92yangmao.com','yangmao_1',0,'smtp.92yangmao.com');
+
+
+CREATE TABLE `yangmao_replace_field` (
+  `replace_field_id` bigint NOT NULL AUTO_INCREMENT COMMENT '替换字段 ID',
+  `template_replace_name` varchar(200) COMMENT '模板中对应替换字段',
+  `database_field` varchar(200) COMMENT '数据库orm对应字段 驼峰式命名',
+  `level` tinyint COMMENT '层级 产品目录为1级 商品为2级',
+  `create_time` datetime comment '创建时间',
+  `last_update_time` datetime comment '最后一次更新时间',
+  PRIMARY KEY (`replace_field_id`))
+  ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='模板替换字段表';
+
+insert into yangmao.yangmao_replace_field(template_replace_name,database_field,level,create_time,last_update_time)
+values("{sectionName}","section",1,now(),now());
+insert into yangmao.yangmao_replace_field(template_replace_name,database_field,level,create_time,last_update_time)
+values("{commodityTitle}","title",2,now(),now());
+insert into yangmao.yangmao_replace_field(template_replace_name,database_field,level,create_time,last_update_time)
+values("{commodityPic}","pictUrl",2,now(),now());
+insert into yangmao.yangmao_replace_field(template_replace_name,database_field,level,create_time,last_update_time)
+values("{commodityOriginalPrice}","originalPrice",2,now(),now());
+insert into yangmao.yangmao_replace_field(template_replace_name,database_field,level,create_time,last_update_time)
+values("{commodityfinalPrice}","finalPrice",2,now(),now());
+insert into yangmao.yangmao_replace_field(template_replace_name,database_field,level,create_time,last_update_time)
+values("{commodityClickUrl}","clickUrl",2,now(),now());
+insert into yangmao.yangmao_replace_field(template_replace_name,database_field,level,create_time,last_update_time)
+values("{commodityVolume}","Volume",2,now(),now());

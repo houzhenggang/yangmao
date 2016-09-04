@@ -84,6 +84,10 @@
         <table tableName="yangmao_email_sender" domainObjectName="YangmaoEmailSender">
             <generatedKey column="sender_id" sqlStatement="MySql" identity="true" />
         </table>
+
+        <table tableName="yangmao_replace_field" domainObjectName="YangmaoReplaceField">
+            <generatedKey column="replace_field_id" sqlStatement="MySql" identity="true" />
+        </table>
         
     </context>
 </generatorConfiguration>

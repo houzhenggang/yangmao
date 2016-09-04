@@ -135,7 +135,10 @@
         </script>
         <!--template  js-->
         <script type="text/javascript" src="${path}/wrap/template/template.js"></script>
+        <#--公共js方法-->
+        <script src="${path}/wrap/common/js/common.js"></script>
 
+        <script src="${path}/wrap/common/seajs_model/seajs/2.1.1/sea.js"></script>
     <#nested>
     </body>
 </html>

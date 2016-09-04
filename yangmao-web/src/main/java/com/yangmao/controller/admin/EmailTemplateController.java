@@ -3,6 +3,7 @@ package com.yangmao.controller.admin;
 import com.yangmao.dal.dataobj.YangmaoFavorites;
 import com.yangmao.dal.dataobj.YangmaoMailTemplate;
 import com.yangmao.model.admin.dto.MailTemplateModel;
+import com.yangmao.model.common.ListResult;
 import com.yangmao.model.common.Page;
 import com.yangmao.service.EmailTemplateService;
 import org.slf4j.Logger;

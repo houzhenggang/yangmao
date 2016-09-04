@@ -16,7 +16,7 @@
   </resultMap>
 
   <select id="selectFavoritesList" resultMap="BaseResultMap">
-      select favorites_id,title from yangmao_favorites
+      select yangmao_favorites_id,title from yangmao_favorites
   </select>
 
 </mapper>

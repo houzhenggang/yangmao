@@ -1,22 +1,24 @@
 package com.yangmao.service.impl;
 
+import com.yangmao.dal.dao.NewYangmaoFavoritesItemMapper;
 import com.yangmao.dal.dao.YangmaoMailTemplateMapper;
+import com.yangmao.dal.dao.YangmaoReplaceFieldMapper;
 import com.yangmao.dal.dao.YangmaoTemplateSectionMapper;
-import com.yangmao.dal.dataobj.YangmaoMailTemplate;
-import com.yangmao.dal.dataobj.YangmaoMailTemplateExample;
-import com.yangmao.dal.dataobj.YangmaoTemplateSection;
-import com.yangmao.dal.dataobj.YangmaoTemplateSectionExample;
+import com.yangmao.dal.dataobj.*;
 import com.yangmao.model.admin.dto.EmailInstanceSectionModel;
 import com.yangmao.model.admin.dto.EmailInstanceTemplateModel;
+import com.yangmao.model.admin.dto.FavoritesItemsModel;
+import com.yangmao.model.admin.dto.SectionUploadTemplateModel;
 import com.yangmao.model.common.Constants;
 import com.yangmao.model.common.Messages;
-import com.yangmao.model.exception.TemplateException;
+import com.yangmao.model.exception.AdminServiceException;
 import com.yangmao.service.InstanceEmailService;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DateFormat;
+import java.util.*;
 
 /**
  * 模板生成邮件服务
@@ -36,24 +38,36 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
      */
     @Autowired
     private YangmaoTemplateSectionMapper sectionMapper;
+
     /**
-     *
+     * 新商品dao
+     */
+    @Autowired
+    private NewYangmaoFavoritesItemMapper newFavoritesItemMapper;
+
+    /**
+     * 替换模板键值对dao
+     */
+    @Autowired
+    private YangmaoReplaceFieldMapper replaceFieldMapper;
+
+    /**
      * @param templateId 模板id
      * @return
      */
     @Override
-    public EmailInstanceTemplateModel selectTemplate(long templateId) throws Exception{
+    public EmailInstanceTemplateModel selectTemplate(long templateId) throws Exception {
         EmailInstanceTemplateModel emailInstanceTemplateModel = new EmailInstanceTemplateModel();
         List<EmailInstanceSectionModel> sectionModels = new ArrayList<>();
-        if(templateId == 0){
-            throw new TemplateException(Messages.TEMPLATE_ID_IS_NULL_CODE,Messages.TEMPLATE_ID_IS_NULL_MSG);
+        if (templateId == 0) {
+            throw new AdminServiceException(Messages.TEMPLATE_ID_IS_NULL_CODE, Messages.TEMPLATE_ID_IS_NULL_MSG);
         }
 
         YangmaoMailTemplateExample example = new YangmaoMailTemplateExample();
         example.createCriteria().andStatusEqualTo(Constants.TEMPLATE_STATUS_NORMAL).andTemplateIdEqualTo(templateId);
-        List<YangmaoMailTemplate> templates =  templateMapper.selectByExample(example);
-        if(templates.isEmpty()){
-            throw new TemplateException(Messages.TEMPLATE_NOT_FIND_CODE,Messages.TEMPLATE_NOT_FIND_MSG);
+        List<YangmaoMailTemplate> templates = templateMapper.selectByExample(example);
+        if (templates.isEmpty()) {
+            throw new AdminServiceException(Messages.TEMPLATE_NOT_FIND_CODE, Messages.TEMPLATE_NOT_FIND_MSG);
         }
 
         YangmaoMailTemplate template = templates.get(0);
@@ -65,15 +79,105 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
         sectionExample.createCriteria().andTemplateIdEqualTo(templateId);
         List<YangmaoTemplateSection> sections = sectionMapper.selectByExample(sectionExample);
 
-        for(YangmaoTemplateSection section : sections){
+        for (YangmaoTemplateSection section : sections) {
             EmailInstanceSectionModel sectionModel = new EmailInstanceSectionModel();
             sectionModel.setSection(section.getSection());
             sectionModel.setSectionAmount(section.getSectionAmount());
+            sectionModel.setFavoritesId(section.getFavoritesId());
             sectionModel.setSectionId(section.getSectionId());
+
+            List<YangmaoFavoritesItem> favoritesItems = this.getCommodityList(section.getFavoritesId());
+            List<FavoritesItemsModel> favoritesItemsModels = new ArrayList<>();
+            for (YangmaoFavoritesItem favoritesItem : favoritesItems){
+                FavoritesItemsModel favoritesItemsModel = new FavoritesItemsModel();
+                favoritesItemsModel.setItemId(favoritesItem.getItemId());
+                favoritesItemsModel.setTitle(favoritesItem.getTitle());
+                favoritesItemsModel.setNumIid(favoritesItem.getNumIid());
+                favoritesItemsModel.setPictUrl(favoritesItem.getPictUrl());
+                favoritesItemsModel.setNick(favoritesItem.getNick());
+                favoritesItemsModel.setOriginalPrice(favoritesItem.getOriginalPrice());
+                favoritesItemsModel.setFinalPrice(favoritesItem.getFinalPrice());
+                favoritesItemsModel.setVolume(favoritesItem.getVolume());
+                favoritesItemsModels.add(favoritesItemsModel);
+            }
+            sectionModel.setFavoritesItemsModels(favoritesItemsModels);
+
             sectionModels.add(sectionModel);
         }
         emailInstanceTemplateModel.setSectionModelList(sectionModels);
 
         return emailInstanceTemplateModel;
+    }
+
+    /**
+     * 通过品类组id获取商品
+     *
+     * @param favoritesId 品类组id
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<YangmaoFavoritesItem> getCommodityList(long favoritesId) throws Exception {
+        List<YangmaoFavoritesItem> favoritesItems = new ArrayList<>();
+
+        if (favoritesId == 0) {
+            throw new AdminServiceException(Messages.FAVORITES_ID_IS_NULL_CODE, Messages.FAVORITES_ID_IS_NULL_MSG);
+        }
+
+        Map<String, Object> map = new HashedMap();
+        map.put("favoritesId", favoritesId);
+        Calendar c = Calendar.getInstance();
+        Date endTime = c.getTime();
+        c.add(Calendar.MONTH, -1);
+        Date startTime = c.getTime();
+        map.put("startTime", startTime);
+        map.put("endTime", endTime);
+
+        favoritesItems = newFavoritesItemMapper.selectFavoritesItemsListByCreateTimeAndId(map);
+
+        return favoritesItems;
+    }
+
+    /**
+     * 通过商品id查询商品详尽信息
+     * @param itemsId 新品id列表
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<YangmaoFavoritesItem> getCommodityListByItemId(String[] itemsId) throws Exception {
+        List<YangmaoFavoritesItem> favoritesItems = new ArrayList<>();
+        Map<String,Object> map = new HashMap<>();
+        map.put("itemsId",itemsId);
+        favoritesItems = newFavoritesItemMapper.selectFavoritesItemsListByItemsId(map);
+        return favoritesItems;
+    }
+
+    /**
+     * 获取替换模板键值对列表
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<YangmaoReplaceField> getReplaceKeyValueList() throws Exception {
+        List<YangmaoReplaceField> replaceFields = new ArrayList<>();
+        YangmaoReplaceFieldExample example = new YangmaoReplaceFieldExample();
+        example.createCriteria().andReplaceFieldIdIsNotNull();
+        replaceFields = replaceFieldMapper.selectByExample(example);
+        return replaceFields;
+    }
+
+    /**
+     * 保存邮件实体
+     * @param instance 邮件实体
+     * @param instanceItemId 产品id
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public int insertInstanceEmail(YangmaoMailInstance instance, String[] instanceItemId) throws Exception {
+        int result = 0;
+
+        return 0;
     }
 }

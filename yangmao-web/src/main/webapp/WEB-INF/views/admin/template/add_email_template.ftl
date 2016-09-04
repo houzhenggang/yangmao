@@ -64,7 +64,7 @@
                                             <div class="col-md-5">
                                                 <select name="favoritesId">
                                                     <#list favorites as f>
-                                                        <option value="${f.favoritesId}-${f.title}">${f.title}</option>
+                                                        <option value="${f.yangmaoFavoritesId}-${f.title}">${f.title}</option>
                                                     </#list>
                                                 </select>
                                                 </br>
@@ -133,7 +133,7 @@
                         <div class="col-md-5">
                             <select name="favoritesId">
                                 {{each list as one}}
-                                    <option value="{{one.favoritesId}}-{{one.title}}">{{one.title}}</option>
+                                    <option value="{{one.yangmaoFavoritesId}}-{{one.title}}">{{one.title}}</option>
                                 {{/each}}
                             </select>
                             </br>

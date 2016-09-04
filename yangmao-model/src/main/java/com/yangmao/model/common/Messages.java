@@ -19,6 +19,9 @@ public class Messages {
 
 	public static int TEMPLATE_NOT_FIND_CODE = 9002;
 	public static String TEMPLATE_NOT_FIND_MSG = "template not find";
+
+	public static int FAVORITES_ID_IS_NULL_CODE = 9003;
+	public static String FAVORITES_ID_IS_NULL_MSG = "favorites id is null";
 	
 
 

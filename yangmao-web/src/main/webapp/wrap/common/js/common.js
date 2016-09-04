@@ -119,3 +119,24 @@ function alertMessage(code) {
         messageBox("错误提示",message);
     }
 }
+
+function repalceArray(content,findStr,replaceStrArray,repalceName){
+    for(var i=0;i<replaceStrArray.length;i++){
+        var repObject = replaceStrArray[i];
+        content = replace(content,findStr,repObject[repalceName]);
+    }
+    return content;
+}
+
+function replace(content,findStr,replaceStr){
+    var index = content.indexOf(findStr);
+
+    if(index < 0){
+        return content;
+    }
+
+    var length = findStr.length;
+
+    return content.substring(0,index) + replaceStr + content.substring(index+length);
+
+}
