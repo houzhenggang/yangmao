@@ -162,10 +162,10 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
      * @throws Exception
      */
     @Override
-    public List<FavoritesItemsModel> getCommodityListByItemId(String[] itemsId) throws Exception {
+    public List<FavoritesItemsModel> getCommodityListByItemId(List<String> itemsId) throws Exception {
         List<FavoritesItemsModel> favoritesItems = new ArrayList<>();
         Map<String,Object> map = new HashMap<>();
-        map.put("itemsId",itemsId);
+        map.put("itemIds",itemsId);
         favoritesItems = newFavoritesItemMapper.selectFavoritesItemsListByItemsId(map);
         return favoritesItems;
     }

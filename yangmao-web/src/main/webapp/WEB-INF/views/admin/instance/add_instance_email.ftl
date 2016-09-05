@@ -4,7 +4,7 @@
 
 </@layoutHead>
 <@layoutBody>
-    <form id="form1" method="post" action="${path}/admin/template/insert_email_template.html" role="form" class="form-horizontal form-bordered">
+    <form id="form1" method="post" action="${path}/admin/instance/insert_instance_email.html" role="form" class="form-horizontal form-bordered">
         <section class="content-wrapper" role="main">
             <div class="content">
                 <div class="content-bar">

@@ -37,7 +37,7 @@ public interface InstanceEmailService {
      * @return
      * @throws Exception
      */
-    public List<FavoritesItemsModel> getCommodityListByItemId(String[] itemsId) throws Exception;
+    public List<FavoritesItemsModel> getCommodityListByItemId(List<String> itemsId) throws Exception;
 
     /**
      * 获取替换模板键值对

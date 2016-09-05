@@ -82,7 +82,7 @@ public class InstanceEmailController {
     public List<FavoritesItemsModel> getCommodityListByItemId(@RequestParam(value = "itemsId[]") List<String> itemsId){
         List<FavoritesItemsModel> favoritesItems =new ArrayList<>();
         try {
-            favoritesItems = instanceEmailService.getCommodityListByItemId((String[])itemsId.toArray());
+            favoritesItems = instanceEmailService.getCommodityListByItemId(itemsId);
         } catch (Exception e) {
             logger.error("InstanceEmailController.getCommodityListByItemId",e);
         }
