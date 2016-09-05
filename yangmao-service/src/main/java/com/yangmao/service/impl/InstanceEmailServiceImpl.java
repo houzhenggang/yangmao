@@ -82,7 +82,7 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
 
         YangmaoMailTemplateExample example = new YangmaoMailTemplateExample();
         example.createCriteria().andStatusEqualTo(Constants.TEMPLATE_STATUS_NORMAL).andTemplateIdEqualTo(templateId);
-        List<YangmaoMailTemplate> templates = templateMapper.selectByExample(example);
+        List<YangmaoMailTemplate> templates = templateMapper.selectByExampleWithBLOBs(example);
         if (templates.isEmpty()) {
             throw new AdminServiceException(Messages.TEMPLATE_NOT_FIND_CODE, Messages.TEMPLATE_NOT_FIND_MSG);
         }
