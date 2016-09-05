@@ -60,8 +60,8 @@ public class EmailServiceImpl implements EmailService{
     @Autowired
     private YangmaoEmailSenderMapper yangmaoEmailSenderMapper;
     
-    static private Long totalAmount=5000000L;//总数
-    static private Long section=6L;//总数分段, 0~1000000,1000000~2000000,...4000000~无穷大
+    static private Long totalAmount=8000000L;//总数
+    static private Long section=9L;//总数分段, 0~1000000,1000000~2000000,...4000000~无穷大
     static private Integer emailLimitByIp=20000;//每个ip地址每天发送限制
 
 	

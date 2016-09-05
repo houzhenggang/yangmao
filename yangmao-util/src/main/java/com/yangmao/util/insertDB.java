@@ -79,10 +79,12 @@ public class insertDB {
 		            ResultSet rs=null;
 		            while ((line=br.readLine())!=null) {
 		            	i++;
+		            	
 		                email=line.trim();
-		                //if(i%1000==0){
-		                	System.out.println("processing line:"+i+" email:"+email);
-		                //}
+		                System.out.println("processing line:"+i+" email:"+email);
+		                if(i%100000==0){
+		                	System.gc();
+		                }
 		                		                
 		                //验证地址是否正确
 		                if(!isNameAdressFormat(email)){
