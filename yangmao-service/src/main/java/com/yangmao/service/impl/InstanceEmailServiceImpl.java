@@ -235,4 +235,52 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
         instances = newYangmaoMailInstanceMapper.selectInstanceEmailForPage(map);
         return instances;
     }
+
+    /**
+     * 通过邮件id删除邮件实例
+     * @param instanceId 邮件实例id
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public int deleteInstanceEmail(long instanceId) throws Exception {
+        if(instanceId <= 0){
+            throw new AdminServiceException(Messages.INSTANCE_EMAIL_ID_IS_NULL_CODE,Messages.INSTANCE_EMAIL_ID_IS_NULL_MSG);
+        }
+        int result = 0;
+        YangmaoMailInstance instance = instanceMapper.selectByPrimaryKey(instanceId);
+        instance.setStatus(Constants.TEMPLATE_STATUS_DELETE);
+        instance.setLastUpdateTime(new Date());
+        result = instanceMapper.updateByPrimaryKey(instance);
+        return result;
+    }
+
+    /**
+     * 通过邮件id查询邮件实例
+     * @param instanceId 邮件实例id
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public YangmaoMailInstance selectInstanceEmailOneById(long instanceId) throws Exception {
+        if(instanceId <= 0){
+            throw new AdminServiceException(Messages.INSTANCE_EMAIL_ID_IS_NULL_CODE,Messages.INSTANCE_EMAIL_ID_IS_NULL_MSG);
+        }
+        YangmaoMailInstance instance = new YangmaoMailInstance();
+        instance = instanceMapper.selectByPrimaryKey(instanceId);
+        return instance;
+    }
+
+    /**
+     * 更新修改邮件实例
+     * @param instance 邮件实例
+     * @return
+     */
+    @Override
+    public int updateInstanceEmail(YangmaoMailInstance instance)  throws Exception{
+        int result = 0;
+        instance.setLastUpdateTime(new Date());
+        instanceMapper.updateByPrimaryKey(instance);
+        return result;
+    }
 }

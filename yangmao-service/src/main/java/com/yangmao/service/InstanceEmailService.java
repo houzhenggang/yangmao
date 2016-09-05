@@ -61,4 +61,30 @@ public interface InstanceEmailService {
      * @return
      */
     public List<YangmaoMailInstance> getInstanceEmailList(Page page, String title)  throws Exception;
+
+    /**
+     * 邮件实例下架
+     * @param instanceId 邮件实例id
+     * @return
+     * @throws Exception
+     */
+    public int deleteInstanceEmail(long instanceId) throws Exception;
+
+    /**
+     * 通过邮件实例id查询邮件实例
+     * @param instanceId 邮件实例id
+     * @return
+     * @throws Exception
+     */
+    public YangmaoMailInstance selectInstanceEmailOneById(long instanceId) throws Exception;
+
+    /**
+     * 修改邮件实例
+     * @param instance 邮件实例
+     * @return
+     */
+    public int updateInstanceEmail(YangmaoMailInstance instance) throws Exception;
+
+
+
 }

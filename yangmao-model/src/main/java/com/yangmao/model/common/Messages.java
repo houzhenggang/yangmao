@@ -22,6 +22,11 @@ public class Messages {
 
 	public static int FAVORITES_ID_IS_NULL_CODE = 9003;
 	public static String FAVORITES_ID_IS_NULL_MSG = "favorites id is null";
+
+	public static int INSTANCE_EMAIL_ID_IS_NULL_CODE = 9004;
+	public static String INSTANCE_EMAIL_ID_IS_NULL_MSG = "instance id is null";
+
+
 	
 
 

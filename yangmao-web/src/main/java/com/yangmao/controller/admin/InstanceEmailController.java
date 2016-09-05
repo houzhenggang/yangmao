@@ -145,6 +145,42 @@ public class InstanceEmailController {
      */
     @RequestMapping(RouteKey.DELETE_INSTANCE_EMIAL)
     public String deleteInstanceEmail(long instanceId){
+        try {
+            instanceEmailService.deleteInstanceEmail(instanceId);
+        } catch (Exception e) {
+            logger.error("InstanceEmailController.deleteInstanceEmail",e);
+        }
+        return "redirect:instance_email_list.html";
+    }
+
+    /**
+     * 修改邮件实例信息
+     * @param instanceId 邮件实例id
+     * @param model 载体
+     */
+    @RequestMapping(RouteKey.MODIFY_INSTANCE_EMAIL)
+    public void modifyInstanceEmail(long instanceId,Model model){
+        YangmaoMailInstance instance = new YangmaoMailInstance();
+        try {
+            instance = instanceEmailService.selectInstanceEmailOneById(instanceId);
+        } catch (Exception e) {
+            logger.error("InstanceEmailController.modifyInstanceEmail",e);
+        }
+        model.addAttribute("data",instance);
+    }
+
+    /**
+     * 修改并保存邮件实例
+     * @param instance 有件事实例
+     * @return
+     */
+    @RequestMapping(RouteKey.UPDATE_INSTANCE_EMAIL)
+    public String updateInstanceEmail(YangmaoMailInstance instance){
+        try {
+            instanceEmailService.updateInstanceEmail(instance);
+        } catch (Exception e) {
+            logger.error("InstanceEmailController.updateInstanceEmail",e);
+        }
         return "redirect:instance_email_list.html";
     }
 
