@@ -1,9 +1,6 @@
 package com.yangmao.service.impl;
 
-import com.yangmao.dal.dao.NewYangmaoFavoritesItemMapper;
-import com.yangmao.dal.dao.YangmaoMailTemplateMapper;
-import com.yangmao.dal.dao.YangmaoReplaceFieldMapper;
-import com.yangmao.dal.dao.YangmaoTemplateSectionMapper;
+import com.yangmao.dal.dao.*;
 import com.yangmao.dal.dataobj.*;
 import com.yangmao.model.admin.dto.EmailInstanceSectionModel;
 import com.yangmao.model.admin.dto.EmailInstanceTemplateModel;
@@ -11,11 +8,13 @@ import com.yangmao.model.admin.dto.FavoritesItemsModel;
 import com.yangmao.model.admin.dto.SectionUploadTemplateModel;
 import com.yangmao.model.common.Constants;
 import com.yangmao.model.common.Messages;
+import com.yangmao.model.common.Page;
 import com.yangmao.model.exception.AdminServiceException;
 import com.yangmao.service.InstanceEmailService;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.DateFormat;
 import java.util.*;
@@ -50,6 +49,24 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
      */
     @Autowired
     private YangmaoReplaceFieldMapper replaceFieldMapper;
+
+    /**
+     * 邮件实例dao
+     */
+    @Autowired
+    private YangmaoMailInstanceMapper instanceMapper;
+
+    /**
+     * 邮件实体商品dao
+     */
+    @Autowired
+    private YangmaoMailInstanceItemMapper instanceItemMapper;
+
+    /**
+     * 新邮件实体dao
+     */
+    @Autowired
+    private NewYangmaoMailInstanceMapper newYangmaoMailInstanceMapper;
 
     /**
      * @param templateId 模板id
@@ -145,8 +162,8 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
      * @throws Exception
      */
     @Override
-    public List<YangmaoFavoritesItem> getCommodityListByItemId(String[] itemsId) throws Exception {
-        List<YangmaoFavoritesItem> favoritesItems = new ArrayList<>();
+    public List<FavoritesItemsModel> getCommodityListByItemId(String[] itemsId) throws Exception {
+        List<FavoritesItemsModel> favoritesItems = new ArrayList<>();
         Map<String,Object> map = new HashMap<>();
         map.put("itemsId",itemsId);
         favoritesItems = newFavoritesItemMapper.selectFavoritesItemsListByItemsId(map);
@@ -175,9 +192,47 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
      * @throws Exception
      */
     @Override
+    @Transactional(value="yangmaoTransactionManager", rollbackFor = Exception.class)
     public int insertInstanceEmail(YangmaoMailInstance instance, String[] instanceItemId) throws Exception {
         int result = 0;
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+        cal.add(Calendar.WEEK_OF_MONTH,1);
+        Date expireDate = cal.getTime();
+        instance.setStatus(Constants.TEMPLATE_STATUS_NORMAL);
+        instance.setCreateTime(date);
+        instance.setExpireTime(expireDate);
+        instance.setLastUpdateTime(date);
+        instanceMapper.insert(instance);
 
+        for(int i = 0;i<instanceItemId.length;i++){
+            String[] itemAndSectionIds =  instanceItemId[i].split("-");
+            YangmaoMailInstanceItem item = new YangmaoMailInstanceItem();
+            item.setSectionId(Long.parseLong(itemAndSectionIds[1]));
+            item.setItemId(Long.parseLong(itemAndSectionIds[0]));
+            item.setMailInstanceId(instance.getMailInstanceId());
+            instanceItemMapper.insert(item);
+        }
         return 0;
+    }
+
+    /**
+     * 获取邮件列表
+     * @param page 分页
+     * @param title 邮件标题
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<YangmaoMailInstance> getInstanceEmailList(Page page, String title)  throws Exception{
+        List<YangmaoMailInstance> instances = new ArrayList<>();
+        Map<String,Object> map = new HashedMap();
+        map.put("name", title);
+        int count = newYangmaoMailInstanceMapper.countsInstanceEmailForPage(map);
+        page.setTotalElements(count);
+        map.put("start", page.getNumber() * page.getSize());
+        map.put("size", page.getSize());
+        instances = newYangmaoMailInstanceMapper.selectInstanceEmailForPage(map);
+        return instances;
     }
 }

@@ -244,19 +244,19 @@
                             content = repalceArray(content,keyValue[i].templateReplaceName,sectionNameArray,keyValue[i].databaseField);
                         }
                     }
-                    var itemsArray =[];
-
+                    var itemsId = [];
                     var itemsArray = $('select[name="instanceItemId"] option:selected');
-                    var itemIdArray = [];
+                    var formDate = new FormData();
                     for(var i = 0 ; i<itemsArray.length;i++){
                         var idArray = itemsArray[i].value.split("-");
                         //获取 item id
-                        itemIdArray.push(idArray[0]);
+//                        formDate.append("itemsId",idArray[0]);
+                        itemsId.push(idArray[0]);
                     }
                     $.ajax({
                         url: "${path}/admin/instance/get_commodity_list_by_item_id",
-                        type: "get",
-                        data: {"itemsId": itemIdArray},
+                        type: "post",
+                        data: {"itemsId":itemsId},
                         dataType: 'json',
                         success: function (data) {
                             var list = data;

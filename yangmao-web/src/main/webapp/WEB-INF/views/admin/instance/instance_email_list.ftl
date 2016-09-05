@@ -1,6 +1,6 @@
 <#include "../../common/_layout.ftl" />
 
-<@layoutHead title="模板列表">
+<@layoutHead title="邮件实例列表">
 
 </@layoutHead>
 <@layoutBody>
@@ -10,8 +10,8 @@
             <div class="content-bar">
                 <ul class="breadcrumb breadcrumb-angle">
                     <li><a href="#" aria-label="home"><i class="fa fa-home"></i></a></li>
-                    <li class="active">模板管理</li>
-                    <li class="active">模板列表</li>
+                    <li class="active">邮件实例管理</li>
+                    <li class="active">邮件实例列表</li>
                 </ul>
             </div><!-- /.content-bar -->
 
@@ -19,21 +19,16 @@
             <div class="content-body">
                 <!--正文内容 开始-->
                 <div class="col-md-12">
-                    <h3>模板列表</h3>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a class="btn btn-success mb-1x mr-1x" href="${path}/admin/template/add_email_template.html">添加模板</a>
-                        </div>
-                    </div>
+                    <h3>邮件实例列表</h3>
                     <div class="panel fade in panel-default panel-fill" data-fill-color="true" data-init-panel="true">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="panel-body">
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">模板名称:</label>
+                                        <label class="col-md-2 control-label">邮件标题:</label>
                                         <div class="col-md-4">
                                             <div class="input-group input-group-in">
-                                                <input name="name" class="form-control" value = "${name!''}"/>                                        </div>
+                                                <input name="title" class="form-control" value = "${title!''}"/>                                        </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -52,22 +47,20 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
-                                <th>模板名称</th>
                                 <th>邮件标题</th>
                                 <th>创建时间</th>
+                                <th>到期时间</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
                                 <#list data as d >
                                 <tr class="odd" role="row">
-                                    <td>${d.name!''}</td>
                                     <td>${d.title!''}</td>
                                     <td>${d.createTime?date}</td>
+                                    <td>${d.expireTime?date}</td>
                                     <td>
-                                        <a class="btn btn-info mb-1x mr-1x" href="${path}/admin/template/modify_email_template.html?templateId=${d.templateId}">修改</a>
-                                        <a class="btn btn-success mb-1x mr-1x" href="${path}/admin/instance/add_instance_email.html?templateId=${d.templateId}">创建实例</a>
-                                        <a class="btn btn-danger mb-1x mr-1x" href="${path}/admin/template/delete_email_template.html?templateId=${d.templateId}">删除</a>
+                                        <a class="btn btn-danger mb-1x mr-1x" href="${path}/admin/instance/delete_email_instance.html?instanceId=${d.mailInstanceId}">删除</a>
                                     </td>
                                 </tr>
                                 </#list>

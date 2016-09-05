@@ -6,6 +6,7 @@ import com.yangmao.dal.dataobj.YangmaoMailInstance;
 import com.yangmao.dal.dataobj.YangmaoReplaceField;
 import com.yangmao.model.admin.dto.EmailInstanceSectionModel;
 import com.yangmao.model.admin.dto.EmailInstanceTemplateModel;
+import com.yangmao.model.admin.dto.FavoritesItemsModel;
 import com.yangmao.model.common.Page;
 import com.yangmao.service.InstanceEmailService;
 import org.omg.CORBA.Request;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -77,10 +79,10 @@ public class InstanceEmailController {
      */
     @ResponseBody
     @RequestMapping(RouteKey.GET_COMMODITY_LIST_BY_ITEM_ID)
-    public List<YangmaoFavoritesItem> getCommodityListByItemId(String[] itemsId){
-        List<YangmaoFavoritesItem> favoritesItems =new ArrayList<>();
+    public List<FavoritesItemsModel> getCommodityListByItemId(@RequestParam(value = "itemsId[]") List<String> itemsId){
+        List<FavoritesItemsModel> favoritesItems =new ArrayList<>();
         try {
-            favoritesItems = instanceEmailService.getCommodityListByItemId(itemsId);
+            favoritesItems = instanceEmailService.getCommodityListByItemId((String[])itemsId.toArray());
         } catch (Exception e) {
             logger.error("InstanceEmailController.getCommodityListByItemId",e);
         }
@@ -109,12 +111,41 @@ public class InstanceEmailController {
      */
     @RequestMapping(RouteKey.INSERT_INSTANCE_EMAIL)
     public String insertInstanceEmail(YangmaoMailInstance instance,String[] instanceItemId){
+        try {
+            instanceEmailService.insertInstanceEmail(instance,instanceItemId);
+        } catch (Exception e) {
+            logger.error("InstanceEmailController.insertInstanceEmail",e);
+        }
         return "redirect:instance_email_list.html";
     }
 
+    /**
+     * 获取生成实体对象
+     * @param page 分页
+     * @param title 抬头
+     * @param model 载体
+     */
     @RequestMapping(RouteKey.INSTANCE_EMAIL_LIST)
     public void instanceEmailList(Page page,String title,Model model){
+        List<YangmaoMailInstance> instances = new ArrayList<>();
+        try {
+            instances = instanceEmailService.getInstanceEmailList(page,title);
+        } catch (Exception e) {
+            logger.error("InstanceEmailController.instanceEmailList",e);
+        }
+        model.addAttribute("data",instances);
+        model.addAttribute("page",page);
+        model.addAttribute("title",title);
+    }
 
+    /**
+     * 删除实体对象通过id
+     * @param instanceId 邮件实体id
+     * @return
+     */
+    @RequestMapping(RouteKey.DELETE_INSTANCE_EMIAL)
+    public String deleteInstanceEmail(long instanceId){
+        return "redirect:instance_email_list.html";
     }
 
 

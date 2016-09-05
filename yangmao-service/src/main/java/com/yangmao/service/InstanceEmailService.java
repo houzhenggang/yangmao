@@ -5,7 +5,9 @@ import com.yangmao.dal.dataobj.YangmaoFavoritesItem;
 import com.yangmao.dal.dataobj.YangmaoMailInstance;
 import com.yangmao.dal.dataobj.YangmaoReplaceField;
 import com.yangmao.model.admin.dto.EmailInstanceTemplateModel;
+import com.yangmao.model.admin.dto.FavoritesItemsModel;
 import com.yangmao.model.admin.dto.SectionUploadTemplateModel;
+import com.yangmao.model.common.Page;
 
 import java.util.List;
 
@@ -35,7 +37,7 @@ public interface InstanceEmailService {
      * @return
      * @throws Exception
      */
-    public List<YangmaoFavoritesItem> getCommodityListByItemId(String[] itemsId) throws Exception;
+    public List<FavoritesItemsModel> getCommodityListByItemId(String[] itemsId) throws Exception;
 
     /**
      * 获取替换模板键值对
@@ -51,4 +53,12 @@ public interface InstanceEmailService {
      * @return
      */
     public int insertInstanceEmail(YangmaoMailInstance instance, String[] instanceItemId) throws Exception;
+
+    /**
+     * 获取生成邮件实体列表
+     * @param page 分页
+     * @param title 邮件标题
+     * @return
+     */
+    public List<YangmaoMailInstance> getInstanceEmailList(Page page, String title)  throws Exception;
 }

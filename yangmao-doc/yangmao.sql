@@ -210,3 +210,5 @@ insert into yangmao.yangmao_replace_field(template_replace_name,database_field,l
 values("{commodityClickUrl}","clickUrl",2,now(),now());
 insert into yangmao.yangmao_replace_field(template_replace_name,database_field,level,create_time,last_update_time)
 values("{commodityVolume}","Volume",2,now(),now());
+insert into yangmao.yangmao_replace_field(template_replace_name,database_field,level,create_time,last_update_time)
+values("{commodityImageClickUrl}","imageClickUrl",2,now(),now());

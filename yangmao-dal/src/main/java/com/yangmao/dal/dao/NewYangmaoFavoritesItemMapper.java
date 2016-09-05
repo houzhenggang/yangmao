@@ -2,6 +2,7 @@ package com.yangmao.dal.dao;
 
 import com.yangmao.dal.dataobj.YangmaoFavoritesItem;
 import com.yangmao.dal.dataobj.YangmaoFavoritesItemExample;
+import com.yangmao.model.admin.dto.FavoritesItemsModel;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -23,5 +24,5 @@ public interface NewYangmaoFavoritesItemMapper {
      * @param map 条件
      * @return
      */
-    public List<YangmaoFavoritesItem> selectFavoritesItemsListByItemsId(Map<String,Object> map);
+    public List<FavoritesItemsModel> selectFavoritesItemsListByItemsId(Map<String,Object> map);
 }
