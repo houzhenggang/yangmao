@@ -21,7 +21,7 @@
                             <h3 class="panel-title">实例基本信息</h3>
                         </div>
                         <div class="panel-body">
-                            <input type="hidden" name="templateId" value="${template.templateId}">
+                            <input type="hidden" id="instanceId" name="mailInstanceId" value="${instanceId}">
                             <!--正文内容 开始-->
 
                             <#list template.sectionModelList as section>
@@ -101,73 +101,7 @@
 
 <@layoutFooter>
 
-    <script id="commodityList" type="text/html">
-        {{each list as one}}
-            <option value="{{one.numIid}}">{{one.title}}</option>
-        {{/each}}
-    </script>
 
-    <script id="emailInstance" tepe="text/html">
-        <font face="Helvetica,Helvetica Neue,Arial,sans-serif">
-                <table width="600" border="0" cellspacing="0" cellpadding="0" style="width:600px;text-align:justify;padding:0;">
-                    <tbody>
-                        {{each list as value}}
-                            <tr>
-                                <td colspan="3">
-                                    <font face="Helvetica,Helvetica Neue,Arial,sans-serif">
-                                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100%;text-align:justify;padding:0;border-bottom:1px solid #CECECE;">
-                                            <tbody>
-                                                <tr>
-                                                    <td style="width:50%;">
-                                                        <font size="2"><span style="font-size:18px;">{{value.section}}</span></font>
-                                                    </td>
-                                                    <td align="right" style="width:50%;">
-                                                        <a href="#" target="_blank">
-                                                            <font size="2" color="#669510">
-                                                                <span style="font-size:14px;"><b>See all</b></span>
-                                                            </font>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                     </font>
-                                </td>
-                             </tr>
-                            <tr>
-                                <td width="180" align="center" valign="top" style="width:180px;text-align:center;padding:15px /*TODO 需要调整 20 10 0 递减*/20px 30px /*TODO 需要调整 0 10 20 递增*/0;">
-                                    <a href="http://woot.us1.list-manage.com/track/click?u=e6217fba00b9cdcae52e4e72e&amp;id=80c3784b95&amp;e=1ba327495b"target="_blank">
-                                        <font color="black">
-                                            <img blockedimagesrc="https://images-na.ssl-images-amazon.com/images/S/mediaservice.woot.com/1a151af9-9b3a-4ee9-80ec-3c7eee560e5b._SX180_.jpg" width="180" height="135" alt="Triple Mount Solar Gutter Lights, 2 packs">
-                                        </font>
-                                    </a>
-                                    <a href="http://woot.us1.list-manage1.com/track/click?u=e6217fba00b9cdcae52e4e72e&amp;id=215130e71a&amp;e=1ba327495b" target="_blank">
-                                        <font color="black">
-                                            <font face="Helvetica,Helvetica Neue,Arial,sans-serif">
-                                                <table style="padding:0;border-style:none;">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td align="center" style="width:100%;text-align:center;padding:25px 0 0 0;">
-                                                                <font size="2">
-                                                                    <span style="font-size:16px;">Triple Mount Solar Gutter Lights, 2 packs </span>
-                                                                </font>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td align="center" style="width:100%;text-align:center;padding:5px 0 0 0;">$13.99 - $18.99</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </font>
-                                        </font>
-                                    </a>
-                                </td>
-                            </tr>
-                        {{/each}}
-                    </tbody>
-                </table>
-        </font>
-    </script>
     <!-- COMPONENTS -->
     <script src="${path}/wrap/scripts/epiceditor.js"></script>
     <script src="${path}/wrap/scripts/summernote.js"></script>
@@ -253,10 +187,11 @@
 //                        formDate.append("itemsId",idArray[0]);
                         itemsId.push(idArray[0]);
                     }
+                    var instanceId = $("#instanceId").val();
                     $.ajax({
                         url: "${path}/admin/instance/get_commodity_list_by_item_id",
                         type: "post",
-                        data: {"itemsId":itemsId},
+                        data: {itemsId:itemsId,instanceId:instanceId},
                         dataType: 'json',
                         success: function (data) {
                             var list = data;

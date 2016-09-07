@@ -78,6 +78,6 @@ public class RouteKey {
 
     public static final String GET_REPLACE_KEY_VALUE_LIST = "/instance/get_replace_key_value_list";
 
-    public static final String DELETE_INSTANCE_EMIAL = "/instance/delete_instance_email.html";
+    public static final String DELETE_INSTANCE_EMAIL = "/instance/delete_instance_email.html";
 
 }

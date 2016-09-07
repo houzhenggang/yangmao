@@ -48,12 +48,15 @@ public class InstanceEmailController {
     @RequestMapping(RouteKey.ADD_INSTANCE_EMAIL)
     public void addInstanceEmail(long templateId,Model model){
         EmailInstanceTemplateModel templateModel = new EmailInstanceTemplateModel();
+        long instanceEmailId = 0;
         try {
             templateModel = instanceEmailService.selectTemplate(templateId);
+            instanceEmailId = instanceEmailService.saveInstanceEmail(templateId);
         } catch (Exception e) {
             logger.error("InstanceEmailController.addInstanceEmail",e);
         }
         model.addAttribute("template",templateModel);
+        model.addAttribute("instanceId",instanceEmailId);
     }
 
     /**
@@ -79,10 +82,10 @@ public class InstanceEmailController {
      */
     @ResponseBody
     @RequestMapping(RouteKey.GET_COMMODITY_LIST_BY_ITEM_ID)
-    public List<FavoritesItemsModel> getCommodityListByItemId(@RequestParam(value = "itemsId[]") List<String> itemsId){
+    public List<FavoritesItemsModel> getCommodityListByItemId(@RequestParam(value = "itemsId[]") List<String> itemsId,@RequestParam(value = "instanceId")long instanceId){
         List<FavoritesItemsModel> favoritesItems =new ArrayList<>();
         try {
-            favoritesItems = instanceEmailService.getCommodityListByItemId(itemsId);
+            favoritesItems = instanceEmailService.getCommodityListByItemId(itemsId,instanceId);
         } catch (Exception e) {
             logger.error("InstanceEmailController.getCommodityListByItemId",e);
         }
@@ -143,7 +146,7 @@ public class InstanceEmailController {
      * @param instanceId 邮件实体id
      * @return
      */
-    @RequestMapping(RouteKey.DELETE_INSTANCE_EMIAL)
+    @RequestMapping(RouteKey.DELETE_INSTANCE_EMAIL)
     public String deleteInstanceEmail(long instanceId){
         try {
             instanceEmailService.deleteInstanceEmail(instanceId);

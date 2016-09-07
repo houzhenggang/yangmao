@@ -65,7 +65,7 @@
   </resultMap>
 
   <select id="selectFavoritesItemsListByItemsId" parameterType="java.util.Map" resultMap="newResultMap">
-    SELECT item_id,num_iid,title,pict_url,nick,original_price,final_price,volume,click_url,click_url as image_click_url
+    SELECT item_id,num_iid,yangmao_favorites_id,title,pict_url,nick,original_price,final_price,volume,click_url,click_url as image_click_url
     FROM yangmao.yangmao_favorites_item
     where item_id IN
     <foreach close=")" collection="itemIds" item="listItem" open="(" separator=",">
