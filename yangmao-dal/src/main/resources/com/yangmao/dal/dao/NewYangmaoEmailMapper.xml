@@ -34,7 +34,7 @@
         </if> 
         and email_instance_id  <![CDATA[<]]> #{instanceId,jdbcType=BIGINT}
         order by last_email_time
-        limit 100
+        limit 10
 		for update 
   	</select>
 </mapper>
