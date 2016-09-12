@@ -185,7 +185,15 @@ CREATE TABLE `yangmao_email_sender` (
   
   insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao1@92yangmao.com','yangmao_1',0,'smtp.92yangmao.com');
 
-
+  insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9201@163.com','yangmao_9201',0,'smtp.163.com');
+  insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9202@163.com','yangmao_9202',0,'smtp.163.com');
+  insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9203@163.com','yangmao_9203',0,'smtp.163.com');
+  
+  insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9201@sina.com','yangmao_9201',0,'smtp.sina.com.cn');
+  insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9202@sina.com','yangmao_9202',0,'smtp.sina.com.cn');
+  insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9203@sina.com','yangmao_9203',0,'smtp.sina.com.cn');
+  insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9204@sina.com','yangmao_9204',0,'smtp.sina.com.cn');
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9205@sina.com','yangmao_9205',0,'smtp.sina.com.cn');   
 CREATE TABLE `yangmao_replace_field` (
   `replace_field_id` bigint NOT NULL AUTO_INCREMENT COMMENT '替换字段 ID',
   `template_replace_name` varchar(200) COMMENT '模板中对应替换字段',
