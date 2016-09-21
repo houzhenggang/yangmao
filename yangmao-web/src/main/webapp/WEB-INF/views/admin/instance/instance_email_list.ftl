@@ -48,6 +48,7 @@
                             <thead>
                             <tr>
                                 <th>邮件标题</th>
+                                <th>邮件状态</th>
                                 <th>创建时间</th>
                                 <th>到期时间</th>
                                 <th>操作</th>
@@ -57,10 +58,18 @@
                                 <#list data as d >
                                 <tr class="odd" role="row">
                                     <td>${d.title!''}</td>
+                                    <td>
+                                        <#if d.status == 0>
+                                            已上架
+                                        <#else>
+                                            待上架
+                                        </#if>
+                                    </td>
                                     <td>${d.createTime?date}</td>
                                     <td>${d.expireTime?date}</td>
                                     <td>
                                         <a class="btn btn-info mb-1x mr-1x" href="${path}/admin/instance/modify_instance_email.html?instanceId=${d.mailInstanceId}">修改</a>
+                                        <a class="btn btn-warning mb-1x mr-1x" href="${path}/admin/instance/delete_instance_email.html?instanceId=${d.mailInstanceId}">上线</a>
                                         <a class="btn btn-danger mb-1x mr-1x" href="${path}/admin/instance/delete_instance_email.html?instanceId=${d.mailInstanceId}">删除</a>
                                     </td>
                                 </tr>

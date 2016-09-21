@@ -187,6 +187,20 @@ public class InstanceEmailController {
         return "redirect:instance_email_list.html";
     }
 
+    /**
+     * 上线邮件实例
+     * @param instanceId 实例id
+     * @return
+     */
+    @RequestMapping(RouteKey.ONLINE_INSTANCE_EMAIL)
+    public String onlineInstanceEmail(long instanceId){
+        try {
+            instanceEmailService.onlineInstanceEmail(instanceId);
+        } catch (Exception e) {
+            logger.error("InstanceEmailController.onlineInstanceEmail",e);
+        }
+        return "redirect:instance_email_list.html";
+    }
 
 
 }

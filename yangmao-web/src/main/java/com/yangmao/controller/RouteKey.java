@@ -70,6 +70,8 @@ public class RouteKey {
 
     public static final String UPDATE_INSTANCE_EMAIL = "/instance/update_instance_email.html";
 
+    public static final String ONLINE_INSTANCE_EMAIL = "/instance/online_instance_email.html";
+
     public static final String INSTANCE_EMAIL_LIST = "/instance/instance_email_list.html";
 
     public static final String GET_COMMODITY_LIST = "/instance/get_commodity_list";
@@ -79,5 +81,7 @@ public class RouteKey {
     public static final String GET_REPLACE_KEY_VALUE_LIST = "/instance/get_replace_key_value_list";
 
     public static final String DELETE_INSTANCE_EMAIL = "/instance/delete_instance_email.html";
+
+
 
 }

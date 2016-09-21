@@ -94,6 +94,13 @@ public interface InstanceEmailService {
      */
     public int updateInstanceEmail(YangmaoMailInstance instance) throws Exception;
 
+    /**
+     * 上线商品实例
+     * @return
+     * @throws Exception
+     */
+    public int onlineInstanceEmail(long instanceId) throws Exception;
+
 
 
 }

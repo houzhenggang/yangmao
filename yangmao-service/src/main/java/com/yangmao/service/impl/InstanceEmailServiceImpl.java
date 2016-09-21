@@ -134,7 +134,7 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
         Date date = cal.getTime();
         cal.add(Calendar.WEEK_OF_MONTH,1);
         Date expireDate = cal.getTime();
-        instance.setStatus(Constants.TEMPLATE_STATUS_NORMAL);
+        instance.setStatus(Constants.TEMPLATE_STATUS_CHECKED);
         instance.setCreateTime(date);
         instance.setExpireTime(expireDate);
         instance.setLastUpdateTime(date);
@@ -305,5 +305,15 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
         mailInstance.setLastUpdateTime(new Date());
         instanceMapper.updateByPrimaryKeyWithBLOBs(mailInstance);
         return result;
+    }
+
+    @Override
+    public int onlineInstanceEmail(long instanceId) throws Exception {
+        int result = 0;
+        YangmaoMailInstance mailInstance = instanceMapper.selectByPrimaryKey(instanceId);
+        mailInstance.setLastUpdateTime(new Date());
+        mailInstance.setStatus(Constants.TEMPLATE_STATUS_NORMAL);
+        instanceMapper.updateByPrimaryKeyWithBLOBs(mailInstance);
+        return 0;
     }
 }
