@@ -62,6 +62,8 @@ public class RouteKey {
 
     public static final String GET_FAVORITES = "/template/get_favorites";
 
+    public static final String ADD_TEMPLATE_FAVORITES = "/template/add_template_favorites.html";
+
     public static final String ADD_INSTANCE_EMAIL = "/instance/add_instance_email.html";
 
     public static final String INSERT_INSTANCE_EMAIL = "/instance/insert_instance_email.html";

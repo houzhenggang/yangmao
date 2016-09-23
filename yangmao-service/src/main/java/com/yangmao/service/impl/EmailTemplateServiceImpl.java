@@ -4,6 +4,7 @@ import com.yangmao.dal.dao.*;
 import com.yangmao.dal.dataobj.YangmaoFavorites;
 import com.yangmao.dal.dataobj.YangmaoMailTemplate;
 import com.yangmao.dal.dataobj.YangmaoTemplateSection;
+import com.yangmao.dal.dataobj.YangmaoTemplateSectionExample;
 import com.yangmao.model.admin.dto.MailTemplateModel;
 import com.yangmao.model.common.Constants;
 import com.yangmao.model.common.Page;
@@ -73,18 +74,17 @@ public class EmailTemplateServiceImpl implements EmailTemplateService {
      */
     @Override
     @Transactional(value="yangmaoTransactionManager", rollbackFor = Exception.class)
-    public int insertEmailTemplate(YangmaoMailTemplate template,String[] favoritesIds,String[] amount) throws Exception {
+    public int insertEmailTemplate(YangmaoMailTemplate template,String[] amount) throws Exception {
         int result = 0;
         Date date = new Date();
         template.setCreateTime(date);
         template.setLastUpdateTime(date);
         template.setStatus(Constants.TEMPLATE_STATUS_NORMAL);
         result = templateMapper.insert(template);
-        for(int i = 0 ;i<favoritesIds.length;i++){
+        for(int i = 0 ;i<amount.length;i++){
             YangmaoTemplateSection section = new YangmaoTemplateSection();
-            String[] str = favoritesIds[i].split("-");
-            section.setFavoritesId(Long.parseLong(str[0]));
-            section.setSection(str[1]);
+            section.setFavoritesId(Long.parseLong("0"));
+            section.setSection("暂不记录");
             section.setSectionAmount(Integer.parseInt(amount[i]));
             section.setTemplateId(template.getTemplateId());
             sectionMapper.insert(section);
@@ -156,5 +156,20 @@ public class EmailTemplateServiceImpl implements EmailTemplateService {
             result = templateMapper.updateByPrimaryKeySelective(template);
         }
         return result;
+    }
+
+    /**
+     * 通过模板id获取品类列表
+     * @param templateId 模板id
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<YangmaoTemplateSection> getTemplateSectionList(long templateId) throws Exception {
+        List<YangmaoTemplateSection> templateSections = new ArrayList<>();
+        YangmaoTemplateSectionExample example = new YangmaoTemplateSectionExample();
+        example.createCriteria().andTemplateIdEqualTo(templateId);
+        templateSections = sectionMapper.selectByExample(example);
+        return templateSections;
     }
 }

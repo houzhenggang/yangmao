@@ -66,7 +66,7 @@
                                     <td>${d.createTime?date}</td>
                                     <td>
                                         <a class="btn btn-info mb-1x mr-1x" href="${path}/admin/template/modify_email_template.html?templateId=${d.templateId}">修改</a>
-                                        <a class="btn btn-success mb-1x mr-1x" href="${path}/admin/instance/add_instance_email.html?templateId=${d.templateId}">创建实例</a>
+                                        <a class="btn btn-success mb-1x mr-1x" href="${path}/admin/template/add_template_favorites.html?templateId=${d.templateId}">添加品类</a>
                                         <a class="btn btn-danger mb-1x mr-1x" href="${path}/admin/template/delete_email_template.html?templateId=${d.templateId}">删除</a>
                                     </td>
                                 </tr>

@@ -2,6 +2,7 @@ package com.yangmao.controller.admin;
 
 import com.yangmao.dal.dataobj.YangmaoFavorites;
 import com.yangmao.dal.dataobj.YangmaoMailTemplate;
+import com.yangmao.dal.dataobj.YangmaoTemplateSection;
 import com.yangmao.model.admin.dto.MailTemplateModel;
 import com.yangmao.model.common.ListResult;
 import com.yangmao.model.common.Page;
@@ -73,9 +74,9 @@ public class EmailTemplateController {
      * @return
      */
     @RequestMapping(RouteKey.INSERT_EMAIL_TEMPLATE)
-    public String insertEmailTemplate(YangmaoMailTemplate template,String[] favoritesId,String[] amount){
+    public String insertEmailTemplate(YangmaoMailTemplate template,String[] amount){
         try {
-            int result = emailTemplateService.insertEmailTemplate(template,favoritesId,amount);
+            int result = emailTemplateService.insertEmailTemplate(template,amount);
         } catch (Exception e) {
             logger.error("EmailTemplateController.insertEmailTemplate",e);
         }
@@ -144,6 +145,25 @@ public class EmailTemplateController {
             logger.error("EmailTemplateController.deleteEmailTemplate", e);
         }
         return "redirect:email_template_list.html";
+    }
+
+    /**
+     * 模板中添加品类
+     * @param templateId 模板id
+     */
+    @RequestMapping(RouteKey.ADD_TEMPLATE_FAVORITES)
+    public void addTemplateFavorites(long templateId,Model model){
+        List<YangmaoTemplateSection> templateSections = new ArrayList<>();
+        List<YangmaoFavorites> favorites = new ArrayList<>();
+        try {
+            templateSections = emailTemplateService.getTemplateSectionList(templateId);
+            favorites = emailTemplateService.getFavoritesList();
+        } catch (Exception e) {
+            logger.error("EmailTemplateController.addTemplateFavorites", e);
+        }
+        model.addAttribute("templateId",templateId);
+        model.addAttribute("section",templateSections);
+        model.addAttribute("favorites",favorites);
     }
 
 
