@@ -73,7 +73,7 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
      * @return
      */
     @Override
-    public EmailInstanceTemplateModel selectTemplate(long templateId) throws Exception {
+    public EmailInstanceTemplateModel selectTemplate(long templateId,String[] favoritesId) throws Exception {
         EmailInstanceTemplateModel emailInstanceTemplateModel = new EmailInstanceTemplateModel();
         List<EmailInstanceSectionModel> sectionModels = new ArrayList<>();
         if (templateId == 0) {
@@ -96,14 +96,16 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
         sectionExample.createCriteria().andTemplateIdEqualTo(templateId);
         List<YangmaoTemplateSection> sections = sectionMapper.selectByExample(sectionExample);
 
-        for (YangmaoTemplateSection section : sections) {
+        for (int i = 0 ; i< sections.size();i++) {
+            YangmaoTemplateSection section = sections.get(i);
             EmailInstanceSectionModel sectionModel = new EmailInstanceSectionModel();
-            sectionModel.setSection(section.getSection());
             sectionModel.setSectionAmount(section.getSectionAmount());
-            sectionModel.setFavoritesId(section.getFavoritesId());
             sectionModel.setSectionId(section.getSectionId());
+            String[] favoritesNameAndId = favoritesId[i].split("-");
+            sectionModel.setSection(favoritesNameAndId[1]);
+            sectionModel.setFavoritesId(Long.parseLong(favoritesNameAndId[0]));
 
-            List<YangmaoFavoritesItem> favoritesItems = this.getCommodityList(section.getFavoritesId());
+            List<YangmaoFavoritesItem> favoritesItems = this.getCommodityList(Long.parseLong(favoritesNameAndId[0]));
             List<FavoritesItemsModel> favoritesItemsModels = new ArrayList<>();
             for (YangmaoFavoritesItem favoritesItem : favoritesItems){
                 FavoritesItemsModel favoritesItemsModel = new FavoritesItemsModel();

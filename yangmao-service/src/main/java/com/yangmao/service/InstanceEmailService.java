@@ -21,7 +21,7 @@ public interface InstanceEmailService {
      * @param templateId 模板id
      * @return
      */
-    public EmailInstanceTemplateModel selectTemplate(long templateId) throws Exception;
+    public EmailInstanceTemplateModel selectTemplate(long templateId,String[] favoritesId) throws Exception;
 
     /**
      * 保存实体

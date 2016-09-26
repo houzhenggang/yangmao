@@ -46,11 +46,11 @@ public class InstanceEmailController {
      * @param templateId 模板id
      */
     @RequestMapping(RouteKey.ADD_INSTANCE_EMAIL)
-    public void addInstanceEmail(long templateId,Model model){
+    public void addInstanceEmail(long templateId,String[] favoritesId,Model model){
         EmailInstanceTemplateModel templateModel = new EmailInstanceTemplateModel();
         long instanceEmailId = 0;
         try {
-            templateModel = instanceEmailService.selectTemplate(templateId);
+            templateModel = instanceEmailService.selectTemplate(templateId,favoritesId);
             instanceEmailId = instanceEmailService.saveInstanceEmail(templateId);
         } catch (Exception e) {
             logger.error("InstanceEmailController.addInstanceEmail",e);
