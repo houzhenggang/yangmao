@@ -110,11 +110,14 @@ public class EmailTemplateController {
     @RequestMapping(RouteKey.MODIFY_EMAIL_TEMPLATE)
     public void modifyEmailTemplate(long templateId,Model model){
         YangmaoMailTemplate template = new YangmaoMailTemplate();
+        List<YangmaoTemplateSection> sections = new ArrayList<>();
         try {
-            template  = emailTemplateService.selectEmailTemplateById(templateId);
+            template = emailTemplateService.selectEmailTemplateById(templateId);
+            sections = emailTemplateService.getTemplateSectionList(templateId);
         } catch (Exception e) {
             logger.error("EmailTemplateController.modifyEmailTemplate", e);
         }
+        model.addAttribute("sections",sections);
         model.addAttribute("template",template);
     }
 
@@ -124,9 +127,9 @@ public class EmailTemplateController {
      * @return
      */
     @RequestMapping(RouteKey.UPDATE_EMAIL_TEMPLATE)
-    public String updateEmailTemplate(YangmaoMailTemplate template){
+    public String updateEmailTemplate(YangmaoMailTemplate template,String[] amount){
         try {
-           int result = emailTemplateService.updateEmailTemplate(template);
+           int result = emailTemplateService.updateEmailTemplate(template,amount);
         } catch (Exception e) {
             logger.error("EmailTemplateController.updateEmailTemplate", e);
         }

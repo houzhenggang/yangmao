@@ -1,17 +1,18 @@
 <#include "../../common/_layout.ftl" />
 
-<@layoutHead title="修改模板">
+<@layoutHead title="添加模板">
 
 </@layoutHead>
 <@layoutBody>
 <form id="form1" method="post" action="${path}/admin/template/update_email_template.html" role="form" class="form-horizontal form-bordered">
+    <input type="hidden" name="templateId" value="${template.templateId}">
     <section class="content-wrapper" role="main">
         <div class="content">
             <div class="content-bar">
                 <ul class="breadcrumb breadcrumb-angle">
                     <li><a href="#" aria-label="home"><i class="fa fa-home"></i></a></li>
                     <li class="active">模板管理</li>
-                    <li class="active">添加模板</li>
+                    <li class="active">修改模板</li>
                 </ul>
             </div><!-- /.content-bar -->
 
@@ -21,14 +22,13 @@
                         <h3 class="panel-title">模板基本信息</h3>
                     </div>
                     <div class="panel-body">
-                        <input type="hidden" name="templateId" value="">
                         <!--正文内容 开始-->
                         <div class="form-group">
                             <label class="col-sm-3 control-label">
                                 模板名称<span class="text-danger">*</span>
                             </label>
                             <div class="col-md-5">
-                                <input name="name" type="text"  class="form-control validate[required]"  />
+                                <input name="name" type="text"  class="form-control validate[required]" value="${template.name}" />
                                 </br>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                                 邮件标题<span class="text-danger">*</span>
                             </label>
                             <div class="col-md-5">
-                                <input name="title" type="text" class="form-control validate[required]"  />
+                                <input name="title" type="text" class="form-control validate[required]" value="${template.title}" />
                                 </br>
                             </div>
                         </div>
@@ -50,42 +50,31 @@
                                      style="font-family:'Open Sans'"></div>
                             </div><!-- /.panel-body -->
                         </div><!-- /.panel -->
-                        <input id="content" name="content" hidden></input>
-                        <div class="modal-dialog modal-full">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-model-dialog data-dismiss="modal" aria-hidden="true"><i class="icon_close fa-lg"></i></button>
-                                    <h4 class="modal-title" id="fullWidthLabel">添加选品组</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">
-                                            选品组名称<span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-md-5">
-                                            <select name="favoritesId">
-                                                <#list favorites as f>
-                                                    <option value="${f.yangmaoFavoritesId}-${f.title}">${f.title}</option>
-                                                </#list>
-                                            </select>
-                                            </br>
+                        <input id="content" name="content" type="hidden"></input>
+                        <#list sections as s>
+                            <div class="modal-dialog modal-full">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-model-dialog data-dismiss="modal" aria-hidden="true"><i class="icon_close fa-lg"></i></button>
+                                        <h4 class="modal-title" id="fullWidthLabel">添加选品组</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">
+                                                商品个数<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-md-5">
+                                                <input name="amount" type="text" class="form-control validate[required]" value="${s.sectionAmount}" />
+                                                </br>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">
-                                            商品个数<span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-md-5">
-                                            <input name="amount" type="text" class="form-control validate[required]"  />
-                                            </br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
+                                    <div class="modal-footer">
 
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div>
+                        </#list>
                         <div id="app">
 
                         </div>
@@ -129,19 +118,6 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">
-                            选品组名称<span class="text-danger">*</span>
-                        </label>
-                        <div class="col-md-5">
-                            <select name="favoritesId">
-                                {{each list as one}}
-                                <option value="{{one.yangmaoFavoritesId}}-{{one.title}}">{{one.title}}</option>
-                                {{/each}}
-                            </select>
-                            </br>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">
                             商品个数<span class="text-danger">*</span>
                         </label>
                         <div class="col-md-5">
@@ -165,25 +141,13 @@
         });
 
         $("#addModel").on('click',function(){
-            $.ajax({
-                url:"${path}/admin/template/get_favorites",
-                type:"get",
-                dataType:'json',
-                success:function(data){
-                    var value ={
-                        list:data
-                    }
-                    var html = template('emailTemplate', value);
-                    $("#app").append(html);
-                    $("button[class='close']").on("click",function(){
-                        this.parentNode.parentNode.parentNode.remove()
-                    });
-                },
-                error:function (xhr, type, exception) {
-                    alert(type, "Failed");
-                }
+            var html = template('emailTemplate');
+            $("#app").append(html);
+            $("button[class='close']").on("click",function(){
+                this.parentNode.parentNode.parentNode.remove()
             });
         });
+
         $(window).load(function () {
 
             //富文本编辑器
@@ -205,14 +169,13 @@
                     ['help', ['help']]
                 ]
             });
+            $summernote.code('${template.content}');
         })
 
         window.saveTemplate = function () {
             var content = $("#commodity-detail-description-summernote").code();
             $("#content").val(content);
             $("#form1").submit();
-
-
         };
     </script>
 </@layoutFooter>

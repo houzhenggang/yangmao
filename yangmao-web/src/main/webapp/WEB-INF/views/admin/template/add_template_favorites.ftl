@@ -5,7 +5,7 @@
 </@layoutHead>
 <@layoutBody>
     <form id="form1" method="post" action="${path}/admin/instance/add_instance_email.html" role="form" class="form-horizontal form-bordered">
-        <input type="hidden" name="templateId" value="templateId">
+        <input type="hidden" name="templateId" value="${templateId!""}">
         <section class="content-wrapper" role="main">
             <div class="content">
                 <div class="content-bar">
@@ -60,9 +60,9 @@
                                 </div>
                             </#list>
                             <div class="col-md-offset-3 col-md-9">
-                                <button class="btn btn-info" onclick="saveTemplate()" style="left: 35%;">
+                                <a class="btn btn-info" onclick="generateInstance()" style="left: 35%;">
                                     提交
-                                </button>
+                                </a>
                                 <button class="btn" type="reset" onclick="javascript:history.go(-1)">
                                     返回
                                 </button>
@@ -86,75 +86,12 @@
 </@layoutBody>
 
 <@layoutFooter>
-    <script id="emailTemplate" type="text/html">
-        <div class="modal-dialog modal-full">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-model-dialog data-dismiss="modal" aria-hidden="true"><i class="icon_close fa-lg"></i></button>
-                    <h4 class="modal-title" id="fullWidthLabel">添加选品组</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">
-                            商品个数<span class="text-danger">*</span>
-                        </label>
-                        <div class="col-md-5">
-                            <input name="amount" type="text" class="form-control validate[required]"  />
-                            </br>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
 
-                </div>
-            </div><!-- /.modal-content -->
-        </div>
-    </script>
-    <!-- COMPONENTS -->
-    <script src="${path}/wrap/scripts/epiceditor.js"></script>
-    <script src="${path}/wrap/scripts/summernote.js"></script>
     <script>
-        $("button[class='close']").on("click",function(){
-            this.parentNode.parentNode.parentNode.remove()
-        });
 
-        $("#addModel").on('click',function(){
-            var html = template('emailTemplate');
-            $("#app").append(html);
-            $("button[class='close']").on("click",function(){
-                this.parentNode.parentNode.parentNode.remove()
-            });
-        });
 
-        $(window).load(function () {
-
-            //富文本编辑器
-            var $summernote = $("#commodity-detail-description-summernote");
-            $summernote.summernote({
-                height: 300,
-                toolbar: [
-                    ['style', ['style']],
-                    ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
-                    ['fontname', ['fontname']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['height', ['height']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video', 'hr', 'readmore']],
-                    ['genixcms', ['elfinder']],
-                    ['view', ['fullscreen', 'codeview']],
-                    ['help', ['help']]
-                ]
-            });
-        })
-
-        window.saveTemplate = function () {
-            var content = $("#commodity-detail-description-summernote").code();
-            $("#content").val(content);
+        window.generateInstance = function () {
             $("#form1").submit();
-
-
         };
     </script>
 </@layoutFooter>

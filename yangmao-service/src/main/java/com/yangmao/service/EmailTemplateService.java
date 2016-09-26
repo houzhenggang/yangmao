@@ -38,7 +38,7 @@ public interface EmailTemplateService {
      * @param template 邮件模板实体
      * @return
      */
-    int updateEmailTemplate(YangmaoMailTemplate template) throws Exception;
+    int updateEmailTemplate(YangmaoMailTemplate template,String[] amount) throws Exception;
 
     /**
      * 通过名字查询模板
