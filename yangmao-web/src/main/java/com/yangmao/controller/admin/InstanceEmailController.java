@@ -82,10 +82,11 @@ public class InstanceEmailController {
      */
     @ResponseBody
     @RequestMapping(RouteKey.GET_COMMODITY_LIST_BY_ITEM_ID)
-    public List<FavoritesItemsModel> getCommodityListByItemId(@RequestParam(value = "itemsId[]") List<String> itemsId,@RequestParam(value = "instanceId")long instanceId){
+    public List<FavoritesItemsModel> getCommodityListByItemId(@RequestParam(value = "itemsId[]") List<String> itemsId,@RequestParam(value = "instanceId")long instanceId,
+                                                              @RequestParam(value = "favoritesId[]") List<String> favoritesId){
         List<FavoritesItemsModel> favoritesItems =new ArrayList<>();
         try {
-            favoritesItems = instanceEmailService.getCommodityListByItemId(itemsId,instanceId);
+            favoritesItems = instanceEmailService.getCommodityListByItemId(itemsId,instanceId,favoritesId);
         } catch (Exception e) {
             logger.error("InstanceEmailController.getCommodityListByItemId",e);
         }

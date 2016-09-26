@@ -183,8 +183,9 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
      * @throws Exception
      */
     @Override
-    public List<FavoritesItemsModel> getCommodityListByItemId(List<String> itemsId,long instanceId) throws Exception {
+    public List<FavoritesItemsModel> getCommodityListByItemId(List<String> itemsId,long instanceId,List<String> favoritesId) throws Exception {
         List<FavoritesItemsModel> favoritesItems = new ArrayList<>();
+        List<FavoritesItemsModel> itemsModelList = new ArrayList<>();
         Map<String,Object> map = new HashMap<>();
         map.put("itemIds",itemsId);
         favoritesItems = newFavoritesItemMapper.selectFavoritesItemsListByItemsId(map);
@@ -192,7 +193,16 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
             favoritesItemsModel.setClickUrl("http://www.92yangmao.com/commodity/redirect.html?itemId="+favoritesItemsModel.getItemId()+"&emailInstanceId="+instanceId+"&email={email}");
             favoritesItemsModel.setImageClickUrl("http://www.92yangmao.com/commodity/redirect.html?itemId="+favoritesItemsModel.getItemId()+"&emailInstanceId="+instanceId+"&email={email}");
         }
-        return favoritesItems;
+        for(int i = 0 ; i <favoritesId.size();i++){
+            long favorite = Long.parseLong(favoritesId.get(i));
+            for(FavoritesItemsModel favoritesItemsModel : favoritesItems){
+                if(favorite == favoritesItemsModel.getYangmaoFavoritesId()){
+                    itemsModelList.add(favoritesItemsModel);
+                }
+            }
+        }
+
+        return itemsModelList;
     }
 
     /**

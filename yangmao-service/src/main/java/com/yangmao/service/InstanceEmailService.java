@@ -46,7 +46,7 @@ public interface InstanceEmailService {
      * @return
      * @throws Exception
      */
-    public List<FavoritesItemsModel> getCommodityListByItemId(List<String> itemsId,long instanceId) throws Exception;
+    public List<FavoritesItemsModel> getCommodityListByItemId(List<String> itemsId,long instanceId,List<String> favoritesId) throws Exception;
 
     /**
      * 获取替换模板键值对
