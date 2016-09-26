@@ -2,6 +2,7 @@ package com.yangmao.controller.ajax;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -19,9 +20,12 @@ import com.alibaba.fastjson.JSON;
 import com.mysql.jdbc.Constants;
 import com.yangmao.controller.RouteKey;
 import com.yangmao.model.GetEmailsResult;
+import com.yangmao.model.common.Messages;
 import com.yangmao.model.common.ResultCode;
 import com.yangmao.model.common.YangmaoException;
 import com.yangmao.service.EmailService;
+import com.yangmao.util.DateUtil;
+import com.yangmao.util.StringUtil;
 
 
 @Controller
@@ -45,6 +49,30 @@ public class EmailController {
 		try {
 			GetEmailsResult getEmailsResult=emailService.getEmailsResult(ipAddr,isTest);
 			result.setData(getEmailsResult);
+		} catch (YangmaoException e) {
+			result.setErrCode(e.getErrCode());
+			result.setErrMsg(e.getErrMsg());
+		}
+		return result;
+
+	}
+    
+    //更新发送者生效时间
+    @ResponseBody
+	@RequestMapping(value = RouteKey.INVALIDATE_SENDER, method = RequestMethod.POST)
+	public ResultCode<Object> invalidateSender(String email) {
+    	logger.info("invalidate email "+email+" to one day after");
+		ResultCode<Object> result=new ResultCode<Object>();		
+		if(StringUtil.isNullOrEmpty(email)){
+			result.setErrCode(Messages.MISSING_REQUIRED_PARAMS_CODE);
+			result.setErrMsg(Messages.MISSING_REQUIRED_PARAMS_MSG);
+			return result;
+		}
+		
+		//create the order
+		try {
+			//Date time=DateUtil.parseDate(effectiveTime, DateUtil.FORMAT_ALL);
+			emailService.invalidateSender(email);
 		} catch (YangmaoException e) {
 			result.setErrCode(e.getErrCode());
 			result.setErrMsg(e.getErrMsg());

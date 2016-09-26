@@ -13,6 +13,9 @@ public class Messages {
 	
 	public static int NO_VALID_SENDER_CODE = 1002;
 	public static String NO_VALID_SENDER_MSG = "no valid mail sender exists";
+	
+	public static int MISSING_REQUIRED_PARAMS_CODE = 1003;
+	public static String MISSING_REQUIRED_PARAMS_MSG = "missing required params";
 
 	public static int TEMPLATE_ID_IS_NULL_CODE = 9001;
 	public static String TEMPLATE_ID_IS_NULL_MSG = "template id is null";

@@ -108,7 +108,7 @@ public class EmailServiceImpl implements EmailService{
 		
 		//获取发信者信息，随机选
 		YangmaoEmailSenderExample yangmaoEmailSenderExample=new YangmaoEmailSenderExample();
-		yangmaoEmailSenderExample.createCriteria().andStatusEqualTo(Constants.SENDER_STATUS_NORMAL);
+		yangmaoEmailSenderExample.createCriteria().andStatusEqualTo(Constants.SENDER_STATUS_NORMAL).andEffecttiveDateLessThan(now);
 		List<YangmaoEmailSender> senders=yangmaoEmailSenderMapper.selectByExample(yangmaoEmailSenderExample);
 		YangmaoEmailSender sender=null;
 		if(senders==null||senders.isEmpty()){
@@ -182,6 +182,26 @@ public class EmailServiceImpl implements EmailService{
 		return getEmailsResult;
 
 	}
+
+
+	@Override
+	public void invalidateSender(String email) throws YangmaoException {
+		Date now=new Date();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(now);		
+		calendar.add(Calendar.DAY_OF_MONTH, 1);
+		Date tomorrow = calendar.getTime();	
+		
+		YangmaoEmailSenderExample yangmaoEmailSenderExample=new YangmaoEmailSenderExample();
+		yangmaoEmailSenderExample.createCriteria().andEmailEqualTo(email);
+		//List<YangmaoEmailSender> senders=yangmaoEmailSenderMapper.selectByExample(yangmaoEmailSenderExample);
+		YangmaoEmailSender sender=new YangmaoEmailSender();
+		sender.setEffecttiveDate(tomorrow);
+		yangmaoEmailSenderMapper.updateByExampleSelective(sender, yangmaoEmailSenderExample);
+
+	}
+
+
 
 
 }

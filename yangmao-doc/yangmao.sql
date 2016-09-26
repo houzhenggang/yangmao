@@ -183,6 +183,9 @@ CREATE TABLE `yangmao_email_sender` (
   KEY `email` (`email`))
   ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='发送者表';
   
+  ALTER TABLE yangmao_email_sender ADD effecttive_date datetime NOT NULL default '2016-09-01 00:00:00' comment '生效时间';
+
+  
   insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao1@92yangmao.com','yangmao_1',0,'smtp.92yangmao.com');
 
   insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9201@163.com','yangmao_9201',0,'smtp.163.com');
@@ -194,7 +197,32 @@ CREATE TABLE `yangmao_email_sender` (
   insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9203@sina.com','yangmao_9203',0,'smtp.sina.com.cn');
   insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9204@sina.com','yangmao_9204',0,'smtp.sina.com.cn');
  insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9205@sina.com','yangmao_9205',0,'smtp.sina.com.cn');   
-CREATE TABLE `yangmao_replace_field` (
+
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9201@gmail.com','yangmao_9201',0,'smtp.gmail.com');   
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9202@gmail.com','yangmao_9202',0,'smtp.gmail.com'); 
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9203@gmail.com','yangmao_9203',0,'smtp.gmail.com');
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9204@gmail.com','yangmao_9204',0,'smtp.gmail.com');
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9205@gmail.com','yangmao_9205',0,'smtp.gmail.com');
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9206@gmail.com','yangmao_9206',0,'smtp.gmail.com');
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9207@gmail.com','yangmao_9207',0,'smtp.gmail.com');
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9208@gmail.com','yangmao_9208',0,'smtp.gmail.com');
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9210@gmail.com','yangmao_9210',0,'smtp.gmail.com');
+insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9211@gmail.com','yangmao_9211',0,'smtp.gmail.com');
+insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9212@gmail.com','yangmao_9212',0,'smtp.gmail.com');
+insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9213@gmail.com','yangmao_9213',0,'smtp.gmail.com');
+insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9214@gmail.com','yangmao_9214',0,'smtp.gmail.com');
+
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9201@21cn.com','maoyang_9201',0,'smtp.21cn.com');
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9202@21cn.com','maoyang_9202',0,'smtp.21cn.com');
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9203@21cn.com','maoyang_9203',0,'smtp.21cn.com');
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9204@21cn.com','maoyang_9204',0,'smtp.21cn.com');
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9205@21cn.com','maoyang_9205',0,'smtp.21cn.com');
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9206@21cn.com','maoyang_9206',0,'smtp.21cn.com');
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9207@21cn.com','maoyang_9207',0,'smtp.21cn.com');
+ insert into yangmao_email_sender(name,email,password,status,host) values('羊毛情报站','yangmao9208@21cn.com','maoyang_9208',0,'smtp.21cn.com');
+ 
+ 
+ CREATE TABLE `yangmao_replace_field` (
   `replace_field_id` bigint NOT NULL AUTO_INCREMENT COMMENT '替换字段 ID',
   `template_replace_name` varchar(200) COMMENT '模板中对应替换字段',
   `database_field` varchar(200) COMMENT '数据库orm对应字段 驼峰式命名',

@@ -29,6 +29,7 @@ public class RouteKey {
     public static final String PREFIX_AJAX = "/ajax";
 
     public static final String GETTING_EMAILS = "/get_emails";
+    public static final String INVALIDATE_SENDER = "/invalidate_sender";
 
     public static final String REBATES_USER = "/user";
     public static final String REGISTER_USER = "/register";
