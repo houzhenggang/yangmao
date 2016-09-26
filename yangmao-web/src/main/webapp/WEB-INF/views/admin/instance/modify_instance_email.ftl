@@ -21,7 +21,7 @@
                             <h3 class="panel-title">实例基本信息</h3>
                         </div>
                         <div class="panel-body">
-                            <input type="hidden" id="mailInstanceId" name="instanceId" value="${data.mailInstanceId}">
+                            <input type="hidden" id="mailInstanceId" name="mailInstanceId" value="${data.mailInstanceId}">
                             <!--正文内容 开始-->
 
                             <br>

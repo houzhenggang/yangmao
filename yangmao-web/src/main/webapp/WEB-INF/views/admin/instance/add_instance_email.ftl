@@ -27,6 +27,7 @@
                             <#list template.sectionModelList as section>
                                 <div class="row">
                                     <input type="hidden" name="sectionName" value="${section.section}">
+                                    <input type="hidden" name="favoritesId" value="${section.favoritesId}">
                                     <#list 1..section.sectionAmount as index>
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -169,9 +170,13 @@
                 success: function (data) {
                     var keyValue = data;
                     var sectionNameArray =[];
+                    var favoritesId = [];
                     $('input[name="sectionName"]').each(function(){
                         var section = {"section" : $(this).val()};
                         sectionNameArray.push(section);
+                    });
+                    $('input[name="favoritesId"]').each(function(){
+                        favoritesId.push($(this).val());
                     });
                     for(var i = 0;i < keyValue.length;i++){
                         if(keyValue[i].level == 1){
@@ -191,7 +196,7 @@
                     $.ajax({
                         url: "${path}/admin/instance/get_commodity_list_by_item_id",
                         type: "post",
-                        data: {itemsId:itemsId,instanceId:instanceId},
+                        data: {itemsId:itemsId,instanceId:instanceId,favoritesId:favoritesId},
                         dataType: 'json',
                         success: function (data) {
                             var list = data;

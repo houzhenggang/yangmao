@@ -73,7 +73,7 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
      * @return
      */
     @Override
-    public EmailInstanceTemplateModel selectTemplate(long templateId) throws Exception {
+    public EmailInstanceTemplateModel selectTemplate(long templateId,String[] favoritesId) throws Exception {
         EmailInstanceTemplateModel emailInstanceTemplateModel = new EmailInstanceTemplateModel();
         List<EmailInstanceSectionModel> sectionModels = new ArrayList<>();
         if (templateId == 0) {
@@ -96,14 +96,16 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
         sectionExample.createCriteria().andTemplateIdEqualTo(templateId);
         List<YangmaoTemplateSection> sections = sectionMapper.selectByExample(sectionExample);
 
-        for (YangmaoTemplateSection section : sections) {
+        for (int i = 0 ; i< sections.size();i++) {
+            YangmaoTemplateSection section = sections.get(i);
             EmailInstanceSectionModel sectionModel = new EmailInstanceSectionModel();
-            sectionModel.setSection(section.getSection());
             sectionModel.setSectionAmount(section.getSectionAmount());
-            sectionModel.setFavoritesId(section.getFavoritesId());
             sectionModel.setSectionId(section.getSectionId());
+            String[] favoritesNameAndId = favoritesId[i].split("-");
+            sectionModel.setSection(favoritesNameAndId[1]);
+            sectionModel.setFavoritesId(Long.parseLong(favoritesNameAndId[0]));
 
-            List<YangmaoFavoritesItem> favoritesItems = this.getCommodityList(section.getFavoritesId());
+            List<YangmaoFavoritesItem> favoritesItems = this.getCommodityList(Long.parseLong(favoritesNameAndId[0]));
             List<FavoritesItemsModel> favoritesItemsModels = new ArrayList<>();
             for (YangmaoFavoritesItem favoritesItem : favoritesItems){
                 FavoritesItemsModel favoritesItemsModel = new FavoritesItemsModel();
@@ -134,7 +136,7 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
         Date date = cal.getTime();
         cal.add(Calendar.WEEK_OF_MONTH,1);
         Date expireDate = cal.getTime();
-        instance.setStatus(Constants.TEMPLATE_STATUS_NORMAL);
+        instance.setStatus(Constants.TEMPLATE_STATUS_CHECKED);
         instance.setCreateTime(date);
         instance.setExpireTime(expireDate);
         instance.setLastUpdateTime(date);
@@ -181,8 +183,9 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
      * @throws Exception
      */
     @Override
-    public List<FavoritesItemsModel> getCommodityListByItemId(List<String> itemsId,long instanceId) throws Exception {
+    public List<FavoritesItemsModel> getCommodityListByItemId(List<String> itemsId,long instanceId,List<String> favoritesId) throws Exception {
         List<FavoritesItemsModel> favoritesItems = new ArrayList<>();
+        List<FavoritesItemsModel> itemsModelList = new ArrayList<>();
         Map<String,Object> map = new HashMap<>();
         map.put("itemIds",itemsId);
         favoritesItems = newFavoritesItemMapper.selectFavoritesItemsListByItemsId(map);
@@ -190,7 +193,16 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
             favoritesItemsModel.setClickUrl("http://www.92yangmao.com/commodity/redirect.html?itemId="+favoritesItemsModel.getItemId()+"&emailInstanceId="+instanceId+"&email={email}");
             favoritesItemsModel.setImageClickUrl("http://www.92yangmao.com/commodity/redirect.html?itemId="+favoritesItemsModel.getItemId()+"&emailInstanceId="+instanceId+"&email={email}");
         }
-        return favoritesItems;
+        for(int i = 0 ; i <favoritesId.size();i++){
+            long favorite = Long.parseLong(favoritesId.get(i));
+            for(FavoritesItemsModel favoritesItemsModel : favoritesItems){
+                if(favorite == favoritesItemsModel.getYangmaoFavoritesId()){
+                    itemsModelList.add(favoritesItemsModel);
+                }
+            }
+        }
+
+        return itemsModelList;
     }
 
     /**
@@ -305,5 +317,15 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
         mailInstance.setLastUpdateTime(new Date());
         instanceMapper.updateByPrimaryKeyWithBLOBs(mailInstance);
         return result;
+    }
+
+    @Override
+    public int onlineInstanceEmail(long instanceId) throws Exception {
+        int result = 0;
+        YangmaoMailInstance mailInstance = instanceMapper.selectByPrimaryKey(instanceId);
+        mailInstance.setLastUpdateTime(new Date());
+        mailInstance.setStatus(Constants.TEMPLATE_STATUS_NORMAL);
+        instanceMapper.updateByPrimaryKeyWithBLOBs(mailInstance);
+        return 0;
     }
 }

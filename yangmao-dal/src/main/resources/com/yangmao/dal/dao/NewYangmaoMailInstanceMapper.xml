@@ -26,7 +26,7 @@
 
 
   <select id="selectInstanceEmailForPage" parameterType="java.util.Map" resultMap="BaseResultMap">
-    SELECT mail_instance_id,title,expire_time,create_time,last_update_time
+    SELECT mail_instance_id,title,status,expire_time,create_time,last_update_time
     FROM yangmao.yangmao_mail_instance
     where status != 1
     <if test="title != null and title != ''">

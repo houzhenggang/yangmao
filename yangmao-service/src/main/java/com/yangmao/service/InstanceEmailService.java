@@ -21,7 +21,7 @@ public interface InstanceEmailService {
      * @param templateId 模板id
      * @return
      */
-    public EmailInstanceTemplateModel selectTemplate(long templateId) throws Exception;
+    public EmailInstanceTemplateModel selectTemplate(long templateId,String[] favoritesId) throws Exception;
 
     /**
      * 保存实体
@@ -46,7 +46,7 @@ public interface InstanceEmailService {
      * @return
      * @throws Exception
      */
-    public List<FavoritesItemsModel> getCommodityListByItemId(List<String> itemsId,long instanceId) throws Exception;
+    public List<FavoritesItemsModel> getCommodityListByItemId(List<String> itemsId,long instanceId,List<String> favoritesId) throws Exception;
 
     /**
      * 获取替换模板键值对
@@ -93,6 +93,13 @@ public interface InstanceEmailService {
      * @return
      */
     public int updateInstanceEmail(YangmaoMailInstance instance) throws Exception;
+
+    /**
+     * 上线商品实例
+     * @return
+     * @throws Exception
+     */
+    public int onlineInstanceEmail(long instanceId) throws Exception;
 
 
 

@@ -11,6 +11,7 @@ public class Constants {
 
 
 	//是否是管理员
+	public static Byte TEMPLATE_STATUS_CHECKED = -1;
 	public static Byte TEMPLATE_STATUS_NORMAL = 0;
 	public static Byte TEMPLATE_STATUS_DELETE = 1;
 

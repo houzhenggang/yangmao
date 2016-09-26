@@ -2,6 +2,7 @@ package com.yangmao.service;
 
 import com.yangmao.dal.dataobj.YangmaoFavorites;
 import com.yangmao.dal.dataobj.YangmaoMailTemplate;
+import com.yangmao.dal.dataobj.YangmaoTemplateSection;
 import com.yangmao.model.admin.dto.MailTemplateModel;
 import com.yangmao.model.common.Page;
 
@@ -23,7 +24,7 @@ public interface EmailTemplateService {
      * @param template 邮件模板实体
      * @return
      */
-    int insertEmailTemplate(YangmaoMailTemplate template,String[] favoritesId,String[] amount) throws Exception;
+    int insertEmailTemplate(YangmaoMailTemplate template,String[] amount) throws Exception;
 
     /**
      * 通过id查询邮件模板
@@ -37,7 +38,7 @@ public interface EmailTemplateService {
      * @param template 邮件模板实体
      * @return
      */
-    int updateEmailTemplate(YangmaoMailTemplate template) throws Exception;
+    int updateEmailTemplate(YangmaoMailTemplate template,String[] amount) throws Exception;
 
     /**
      * 通过名字查询模板
@@ -53,4 +54,12 @@ public interface EmailTemplateService {
      * @return
      */
     int deleteEmailTemplate(long templateId) throws Exception;
+
+    /**
+     * 通过模板id获取品类列表
+     * @param templateId 模板id
+     * @return
+     * @throws Exception
+     */
+    List<YangmaoTemplateSection> getTemplateSectionList(long templateId) throws Exception;
 }

@@ -46,11 +46,11 @@ public class InstanceEmailController {
      * @param templateId 模板id
      */
     @RequestMapping(RouteKey.ADD_INSTANCE_EMAIL)
-    public void addInstanceEmail(long templateId,Model model){
+    public void addInstanceEmail(long templateId,String[] favoritesId,Model model){
         EmailInstanceTemplateModel templateModel = new EmailInstanceTemplateModel();
         long instanceEmailId = 0;
         try {
-            templateModel = instanceEmailService.selectTemplate(templateId);
+            templateModel = instanceEmailService.selectTemplate(templateId,favoritesId);
             instanceEmailId = instanceEmailService.saveInstanceEmail(templateId);
         } catch (Exception e) {
             logger.error("InstanceEmailController.addInstanceEmail",e);
@@ -82,10 +82,11 @@ public class InstanceEmailController {
      */
     @ResponseBody
     @RequestMapping(RouteKey.GET_COMMODITY_LIST_BY_ITEM_ID)
-    public List<FavoritesItemsModel> getCommodityListByItemId(@RequestParam(value = "itemsId[]") List<String> itemsId,@RequestParam(value = "instanceId")long instanceId){
+    public List<FavoritesItemsModel> getCommodityListByItemId(@RequestParam(value = "itemsId[]") List<String> itemsId,@RequestParam(value = "instanceId")long instanceId,
+                                                              @RequestParam(value = "favoritesId[]") List<String> favoritesId){
         List<FavoritesItemsModel> favoritesItems =new ArrayList<>();
         try {
-            favoritesItems = instanceEmailService.getCommodityListByItemId(itemsId,instanceId);
+            favoritesItems = instanceEmailService.getCommodityListByItemId(itemsId,instanceId,favoritesId);
         } catch (Exception e) {
             logger.error("InstanceEmailController.getCommodityListByItemId",e);
         }
@@ -187,6 +188,20 @@ public class InstanceEmailController {
         return "redirect:instance_email_list.html";
     }
 
+    /**
+     * 上线邮件实例
+     * @param instanceId 实例id
+     * @return
+     */
+    @RequestMapping(RouteKey.ONLINE_INSTANCE_EMAIL)
+    public String onlineInstanceEmail(long instanceId){
+        try {
+            instanceEmailService.onlineInstanceEmail(instanceId);
+        } catch (Exception e) {
+            logger.error("InstanceEmailController.onlineInstanceEmail",e);
+        }
+        return "redirect:instance_email_list.html";
+    }
 
 
 }
