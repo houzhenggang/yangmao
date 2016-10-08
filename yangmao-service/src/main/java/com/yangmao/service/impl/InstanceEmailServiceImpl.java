@@ -229,6 +229,7 @@ public class InstanceEmailServiceImpl implements InstanceEmailService {
     @Override
     @Transactional(value="yangmaoTransactionManager", rollbackFor = Exception.class)
     public int insertInstanceEmail(YangmaoMailInstance instance, String[] instanceItemId) throws Exception {
+
         int result = 0;
 
         YangmaoMailInstance mailInstance = instanceMapper.selectByPrimaryKey(instance.getMailInstanceId());

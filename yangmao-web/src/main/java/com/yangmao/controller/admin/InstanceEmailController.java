@@ -1,5 +1,6 @@
 package com.yangmao.controller.admin;
 
+import com.alibaba.fastjson.JSON;
 import com.yangmao.controller.RouteKey;
 import com.yangmao.dal.dataobj.YangmaoFavoritesItem;
 import com.yangmao.dal.dataobj.YangmaoMailInstance;
@@ -115,6 +116,7 @@ public class InstanceEmailController {
      */
     @RequestMapping(RouteKey.INSERT_INSTANCE_EMAIL)
     public String insertInstanceEmail(YangmaoMailInstance instance,String[] instanceItemId){
+        logger.info("instance :"+ JSON.toJSONString(instance)+"instanceItemId= "+instanceItemId);
         try {
             instanceEmailService.insertInstanceEmail(instance,instanceItemId);
         } catch (Exception e) {

@@ -69,7 +69,7 @@
                                     <td>${d.expireTime?date}</td>
                                     <td>
                                         <a class="btn btn-info mb-1x mr-1x" href="${path}/admin/instance/modify_instance_email.html?instanceId=${d.mailInstanceId}">修改</a>
-                                        <a class="btn btn-warning mb-1x mr-1x" href="${path}/admin/instance/delete_instance_email.html?instanceId=${d.mailInstanceId}">上线</a>
+                                        <a class="btn btn-warning mb-1x mr-1x" href="${path}/admin/instance/online_instance_email.html?instanceId=${d.mailInstanceId}">上线</a>
                                         <a class="btn btn-danger mb-1x mr-1x" href="${path}/admin/instance/delete_instance_email.html?instanceId=${d.mailInstanceId}">删除</a>
                                     </td>
                                 </tr>
