@@ -113,5 +113,15 @@
 	</bean>
 
 
+	<!--cache client,expire after 20 hours-->
+	<bean id="simpleRedisClient" class="com.yangmao.dal.cache.SimpleRedisCacheClient" scope="prototype">
+		<constructor-arg>
+			<bean class="com.yangmao.dal.cache.CacheConfig">
+				<property name="host" value="#{apiConfig['redis.host']}" />
+				<property name="prefix" value="UserToken" />
+				<property name="expireTime" value="72000" />
+			</bean>
+		</constructor-arg>
+	</bean>
 
 </beans:beans>

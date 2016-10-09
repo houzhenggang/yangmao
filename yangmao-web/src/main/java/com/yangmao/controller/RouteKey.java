@@ -31,7 +31,7 @@ public class RouteKey {
     public static final String GETTING_EMAILS = "/get_emails";
     public static final String INVALIDATE_SENDER = "/invalidate_sender";
 
-    public static final String REBATES_USER = "/user";
+    public static final String USER_LOGIN = "/user";
     public static final String REGISTER_USER = "/register";
     public static final String LOGIN = "/login";
 

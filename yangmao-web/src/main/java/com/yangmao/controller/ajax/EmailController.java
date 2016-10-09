@@ -2,29 +2,20 @@ package com.yangmao.controller.ajax;
 
 import javax.servlet.http.HttpServletRequest;
 
-import java.util.Date;
-import java.util.List;
 
-import javax.servlet.http.Cookie;
-
-import org.apache.commons.jxpath.ri.compiler.Constant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.alibaba.fastjson.JSON;
-import com.mysql.jdbc.Constants;
 import com.yangmao.controller.RouteKey;
 import com.yangmao.model.GetEmailsResult;
 import com.yangmao.model.common.Messages;
 import com.yangmao.model.common.ResultCode;
 import com.yangmao.model.common.YangmaoException;
 import com.yangmao.service.EmailService;
-import com.yangmao.util.DateUtil;
 import com.yangmao.util.StringUtil;
 
 
