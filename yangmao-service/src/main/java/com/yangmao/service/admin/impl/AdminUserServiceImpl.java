@@ -1,11 +1,11 @@
-package com.yangmao.service.impl;
+package com.yangmao.service.admin.impl;
 
 import com.yangmao.dal.dao.NewYangmaoUserMapper;
 import com.yangmao.dal.dao.YangmaoUserMapper;
 import com.yangmao.dal.dataobj.YangmaoUser;
 import com.yangmao.model.common.Constants;
 import com.yangmao.model.common.Page;
-import com.yangmao.service.AdminUserService;
+import com.yangmao.service.admin.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +39,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     public int insertUser(YangmaoUser user) throws Exception {
         int result = 0;
         Date date = new Date();
-
+        user.setStatus(Constants.USER_STATUS_NORMAL);
         user.setCreateTime(date);
         user.setLastUpdateTime(date);
         yangmaoUserMapper.insert(user);
@@ -73,11 +73,13 @@ public class AdminUserServiceImpl implements AdminUserService {
         int result = 0;
         Date date = new Date();
         YangmaoUser updateUser = yangmaoUserMapper.selectByPrimaryKey(user.getUserId());
+        if(!updateUser.getPassword().equals(user.getPassword())){
+            updateUser.setPassword(user.getPassword());
+        }
         updateUser.setIsAdmin(user.getIsAdmin());
         updateUser.setLastUpdateTime(date);
         updateUser.setEmail(user.getEmail());
         updateUser.setName(user.getName());
-        updateUser.setPassword(user.getPassword());
         result = yangmaoUserMapper.updateByPrimaryKey(updateUser);
         return result;
     }

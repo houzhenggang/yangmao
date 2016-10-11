@@ -1,22 +1,20 @@
-package com.yangmao.service.impl;
+package com.yangmao.service.admin.impl;
 
 import com.yangmao.dal.dao.*;
 import com.yangmao.dal.dataobj.*;
 import com.yangmao.model.admin.dto.EmailInstanceSectionModel;
 import com.yangmao.model.admin.dto.EmailInstanceTemplateModel;
 import com.yangmao.model.admin.dto.FavoritesItemsModel;
-import com.yangmao.model.admin.dto.SectionUploadTemplateModel;
 import com.yangmao.model.common.Constants;
 import com.yangmao.model.common.Messages;
 import com.yangmao.model.common.Page;
 import com.yangmao.model.exception.AdminServiceException;
-import com.yangmao.service.InstanceEmailService;
+import com.yangmao.service.admin.InstanceEmailService;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.DateFormat;
 import java.util.*;
 
 /**

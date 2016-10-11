@@ -22,5 +22,17 @@ public class UserLoginInfo {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	
+
+	/**
+	 * 路径
+	 */
+	private String path;
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
 }

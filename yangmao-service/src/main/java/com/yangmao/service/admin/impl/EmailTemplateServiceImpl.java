@@ -1,4 +1,4 @@
-package com.yangmao.service.impl;
+package com.yangmao.service.admin.impl;
 
 import com.yangmao.dal.dao.*;
 import com.yangmao.dal.dataobj.YangmaoFavorites;
@@ -8,8 +8,7 @@ import com.yangmao.dal.dataobj.YangmaoTemplateSectionExample;
 import com.yangmao.model.admin.dto.MailTemplateModel;
 import com.yangmao.model.common.Constants;
 import com.yangmao.model.common.Page;
-import com.yangmao.service.EmailTemplateService;
-import org.apache.commons.collections.map.HashedMap;
+import com.yangmao.service.admin.EmailTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

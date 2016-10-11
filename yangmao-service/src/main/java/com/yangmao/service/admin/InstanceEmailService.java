@@ -1,4 +1,4 @@
-package com.yangmao.service;
+package com.yangmao.service.admin;
 
 import com.yangmao.dal.dataobj.YangmaoFavorites;
 import com.yangmao.dal.dataobj.YangmaoFavoritesItem;

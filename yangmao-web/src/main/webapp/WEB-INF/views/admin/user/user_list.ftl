@@ -54,9 +54,8 @@
                             <tr>
                                 <th>用户名</th>
                                 <th>角色</th>
+                                <th>邮箱</th>
                                 <th>状态</th>
-                                <th>创建时间</th>
-                                <th>修改时间</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -65,30 +64,33 @@
                                 <tr class="odd" role="row">
                                     <td>${d.name!''}</td>
                                     <td>
-                                        <#if d.isAdmin==1>
-                                            管理员
-                                        <#else>
-                                            用户
+                                        <#if d.isAdmin ??>
+                                            <#if d.isAdmin==1>
+                                                管理员
+                                            <#else>
+                                                用户
+                                            </#if>
                                         </#if>
                                     </td>
                                     <td>
-                                        <#if d.status==0>
-                                            正常
-                                        </#if>
-                                        <#if d.status==1>
-                                            冻结
-                                        </#if>
-                                        <#if d.status==2>
-                                            删除
+                                        <#if d.status ??>
+                                            <#if d.status==0>
+                                                正常
+                                            </#if>
+                                            <#if d.status==1>
+                                                冻结
+                                            </#if>
+                                            <#if d.status==2>
+                                                删除
+                                            </#if>
                                         </#if>
                                     </td>
-                                    <td>${d.createTime?date}</td>
-                                    <td>${d.lastUpdateTime?date}</td>
+                                    <td>${d.email!''}</td>
                                     <td>
-                                        <a class="btn btn-info mb-1x mr-1x" href="${path}/admin/user/modify_user.html?userId=${d.userId}">修改</a>
-                                        <a class="btn btn-success mb-1x mr-1x" href="${path}/admin/user/update_status.html?userId=${d.userId}&status=0">恢复正常</a>
-                                        <a class="btn btn-warning mb-1x mr-1x" href="${path}/admin/user/update_status.html?userId=${d.userId}&status=1">冻结</a>
-                                        <a class="btn btn-danger mb-1x mr-1x" href="${path}/admin/user/update_status.html?userId=${d.userId}&status=2">删除</a>
+                                        <a class="btn btn-info mb-1x mr-1x" href="${path}/admin/user/modify_user.html?userId=${d.userId!''}">修改</a>
+                                        <a class="btn btn-success mb-1x mr-1x" href="${path}/admin/user/update_status.html?userId=${d.userId!''}&status=0">恢复正常</a>
+                                        <a class="btn btn-warning mb-1x mr-1x" href="${path}/admin/user/update_status.html?userId=${d.userId!''}&status=1">冻结</a>
+                                        <a class="btn btn-danger mb-1x mr-1x" href="${path}/admin/user/update_status.html?userId=${d.userId!''}&status=2">删除</a>
                                     </td>
                                 </tr>
                                 </#list>

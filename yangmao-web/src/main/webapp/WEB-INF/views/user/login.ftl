@@ -75,7 +75,7 @@
 
             <#--<hr>-->
 
-                <p>还没账户? <a href="#signup" data-toggle="tab">注册一个</a></p>
+                <#--<p>还没账户? <a href="#signup" data-toggle="tab">注册一个</a></p>-->
             </form><!-- /#signinForm -->
         </div><!-- /.tab-pane -->
 
@@ -174,6 +174,7 @@
 <script src="${path}/wrap/sha1/sha1.js"></script>
 <script src="${path}/wrap/jqueryui/jqueryUI.js"></script>
 <script>
+    var returnPath = "${returnPath!''}";
     function setCookie (name, value){
         //设置名称为name,值为value的Cookie
         document.cookie = name+"="+value+";path=/";
@@ -202,15 +203,15 @@
             success:function(data){
                 var message = "";
                 if(data.errCode == 0){
-                    window.location.href="${path}/index.html";
+                    var pathRoad = "/admin/index/index.html";
+                    if(returnPath != null && returnPath != ''){
+                        pathRoad = returnPath;
+                    }
+                    window.location.href= pathRoad;
                 }else{
                     var key ={
-                        "100":"请重新输入账号密码",
-                        "101":"账户已被冻结",
-                        "102":"请重新登录",
-                        "113":"请重新输入账号密码",
-                        "114":"请重新输入账号密码",
-                        "104":"你的账号出现问题，请联系我们",
+                        "103":"请重新输入账号密码",
+                        "104":"请重新输入账号密码",
                         "unknow":"#"+data.errCode
                     }
                     if(key[data.errCode]) message=key[data.errCode];
@@ -245,7 +246,7 @@
                     }else{
                         var key ={
                             "106":"请填写账号密码",
-                            "112":"账户已存在",
+                            "102":"账户已存在",
                             "unknow":"#"+data.errCode
                         }
                         if(key[data.errCode]) message=key[data.errCode];

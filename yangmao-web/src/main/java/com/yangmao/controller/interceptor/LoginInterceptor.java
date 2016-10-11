@@ -4,7 +4,7 @@ package com.yangmao.controller.interceptor;
 import com.yangmao.dal.dataobj.YangmaoUser;
 import com.yangmao.model.UserInfo;
 import com.yangmao.model.common.Constants;
-import com.yangmao.service.AdminUserService;
+import com.yangmao.service.admin.AdminUserService;
 import com.yangmao.service.TokenService;
 import com.yangmao.util.CookieHelper;
 import com.yangmao.util.PropertiesUtils;
@@ -53,6 +53,7 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
+        String path = request.getRequestURI();
         String token = CookieHelper.getCookie(Constants.COOKIE_USER_TOKEN,request);
         UserInfo userInfo = tokenService.getUserInfoByToken(token);
         if(userInfo != null){
@@ -62,6 +63,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             }
         }
         try {
+            request.getSession().setAttribute("returnPath",path);
             String backendUrl = props.get("backend.url");
             String adminUrl = props.get("admin.uri");
             response.sendRedirect(backendUrl + adminUrl);

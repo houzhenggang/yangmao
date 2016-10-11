@@ -5,6 +5,7 @@
 </@layoutHead>
 <@layoutBody>
     <form id="form1" method="post" action="${path}/admin/user/save_user.html" role="form" class="form-horizontal form-bordered">
+        <input name="password" id="password" type="hidden" class="form-control"  />
         <section class="content-wrapper" role="main">
             <div class="content">
                 <div class="content-bar">
@@ -36,7 +37,16 @@
                                     用户密码<span class="text-danger">*</span>
                                 </label>
                                 <div class="col-md-5">
-                                    <input name="password"  type="password" class="form-control validate[required]"  />
+                                    <input name="passwords" id="passwords" onblur="passwordBlur();" type="password" class="form-control validate[required]"  />
+                                    </br>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">
+                                    用户邮箱<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-5">
+                                    <input name="email" id="email" type="text"  class="form-control validate[required]"  />
                                     </br>
                                 </div>
                             </div>
@@ -77,7 +87,20 @@
 </@layoutBody>
 
 <@layoutFooter>
-
+    <script src="${path}/wrap/base64/base64.js"></script>
+    <script src="${path}/wrap/sha1/sha1.js"></script>
+    <script>
+        function encodePass(value){
+            var basePassword = Base64.encode(value);
+            var encodeSha1 = sha1(basePassword);
+            return encodeSha1;
+        }
+        function passwordBlur(){
+            var password = $("#passwords").val();
+            var encode = encodePass(password);
+            $("#password").val(encode);
+        }
+    </script>
 </@layoutFooter>
 
 

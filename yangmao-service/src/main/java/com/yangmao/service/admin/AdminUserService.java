@@ -1,4 +1,4 @@
-package com.yangmao.service;
+package com.yangmao.service.admin;
 
 import com.yangmao.dal.dataobj.YangmaoUser;
 import com.yangmao.model.common.Page;

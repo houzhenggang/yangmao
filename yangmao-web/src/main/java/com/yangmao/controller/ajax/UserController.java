@@ -14,11 +14,13 @@ import com.yangmao.util.PropertiesUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
@@ -65,7 +67,7 @@ public class UserController {
     //用户登陆
     @ResponseBody
 	@RequestMapping(value = RouteKey.LOGIN, method = RequestMethod.POST)
-	public ResultCode<UserLoginInfo> lonin(String userName,String password,HttpServletResponse response) {
+	public ResultCode<UserLoginInfo> login(String userName, String password, HttpServletResponse response) {
     	logger.info("user with name:"+userName+",password:"+password+" is logging in");
 		ResultCode<UserLoginInfo> result=new ResultCode<UserLoginInfo>();		
 		//check params
