@@ -30,7 +30,7 @@ public class EmailController {
     //获取发邮件信息
     @ResponseBody
 	@RequestMapping(value = RouteKey.GETTING_EMAILS, method = RequestMethod.GET)
-	public ResultCode<GetEmailsResult> getEmails(String isTest,HttpServletRequest httpServletRequest) {
+	public ResultCode<GetEmailsResult> getEmails(String isTest,String needSender,HttpServletRequest httpServletRequest) {
 		ResultCode<GetEmailsResult> result=new ResultCode<GetEmailsResult>();		
 		//check params
 		//String ipAddr=httpServletRequest.getRemoteAddr();
@@ -38,7 +38,7 @@ public class EmailController {
 		
 		//create the order
 		try {
-			GetEmailsResult getEmailsResult=emailService.getEmailsResult(ipAddr,isTest);
+			GetEmailsResult getEmailsResult=emailService.getEmailsResult(ipAddr,isTest,needSender);
 			result.setData(getEmailsResult);
 		} catch (YangmaoException e) {
 			result.setErrCode(e.getErrCode());

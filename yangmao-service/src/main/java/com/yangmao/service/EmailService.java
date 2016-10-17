@@ -7,7 +7,7 @@ import com.yangmao.model.common.YangmaoException;
 
 public interface EmailService {
 
-	GetEmailsResult getEmailsResult(String ipAddr,String isTest) throws YangmaoException;
+	GetEmailsResult getEmailsResult(String ipAddr,String isTest,String needSender) throws YangmaoException;
 
 	void invalidateSender(String email) throws YangmaoException;
 

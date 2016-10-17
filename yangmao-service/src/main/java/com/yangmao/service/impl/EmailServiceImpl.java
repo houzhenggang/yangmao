@@ -66,7 +66,7 @@ public class EmailServiceImpl implements EmailService{
 
 	
 	@Override
-	public GetEmailsResult getEmailsResult(String ipAddress,String isTest) throws YangmaoException {
+	public GetEmailsResult getEmailsResult(String ipAddress,String isTest,String needSender) throws YangmaoException {
 		Date now=new Date();
 		Long number=now.getTime();
 		String date=DateUtil.formatDate(now,DateUtil.FORMAT_DEFAULT);
