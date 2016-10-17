@@ -62,7 +62,7 @@ public class EmailServiceImpl implements EmailService{
     
     static private Long totalAmount=10000000L;//总数
     static private Long section=11L;//总数分段, 0~1000000,1000000~2000000,...4000000~无穷大
-    static private Integer emailLimitByIp=20000;//每个ip地址每天发送限制
+    static private Integer emailLimitByIp=40000;//每个ip地址每天发送限制
 
 	
 	@Override
@@ -105,20 +105,23 @@ public class EmailServiceImpl implements EmailService{
 			//mailInstance=mailInstances.get(0);
 		}
 		
-		
-		//获取发信者信息，随机选
-		YangmaoEmailSenderExample yangmaoEmailSenderExample=new YangmaoEmailSenderExample();
-		yangmaoEmailSenderExample.createCriteria().andStatusEqualTo(Constants.SENDER_STATUS_NORMAL).andEffecttiveDateLessThan(now);
-		List<YangmaoEmailSender> senders=yangmaoEmailSenderMapper.selectByExample(yangmaoEmailSenderExample);
 		YangmaoEmailSender sender=null;
-		if(senders==null||senders.isEmpty()){
-			logger.info("no valid mail sender exist");
-			throw new YangmaoException(Messages.NO_VALID_SENDER_CODE,Messages.NO_VALID_SENDER_MSG);	
-		}else{//随机选一个sender
-			Integer size=senders.size();
-			Long m=number%size.longValue();
-			sender=senders.get(m.intValue());
+		//获取发信者信息，随机选
+		if(!"N".equals(needSender)){//需要发送账户
+			YangmaoEmailSenderExample yangmaoEmailSenderExample=new YangmaoEmailSenderExample();
+			yangmaoEmailSenderExample.createCriteria().andStatusEqualTo(Constants.SENDER_STATUS_NORMAL).andEffecttiveDateLessThan(now);
+			List<YangmaoEmailSender> senders=yangmaoEmailSenderMapper.selectByExample(yangmaoEmailSenderExample);
+			
+			if(senders==null||senders.isEmpty()){
+				logger.info("no valid mail sender exist");
+				throw new YangmaoException(Messages.NO_VALID_SENDER_CODE,Messages.NO_VALID_SENDER_MSG);	
+			}else{//随机选一个sender
+				Integer size=senders.size();
+				Long m=number%size.longValue();
+				sender=senders.get(m.intValue());
+			}
 		}
+
 		
 		
 		//获取0 到section之间的一个随机数		
