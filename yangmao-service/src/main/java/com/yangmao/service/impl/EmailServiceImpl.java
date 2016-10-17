@@ -151,17 +151,16 @@ public class EmailServiceImpl implements EmailService{
 		getEmailsResult.setEmailContent(mailInstance.getContent());
 		getEmailsResult.setEmailTitle(mailInstance.getTitle());
 		getEmailsResult.setReceivers(emailStingList);
-		getEmailsResult.setSenderEmail(sender.getEmail());
-		getEmailsResult.setSenderName(sender.getName());
-		if(sender.getPassword()!=null){
-			byte[] bytes = sender.getPassword().getBytes();
-			String base64password = Base64.encodeBytes(bytes);
-			getEmailsResult.setSenderPassword(base64password);
+		if(sender!=null){
+			getEmailsResult.setSenderEmail(sender.getEmail());
+			getEmailsResult.setSenderName(sender.getName());
+			if(sender.getPassword()!=null){
+				byte[] bytes = sender.getPassword().getBytes();
+				String base64password = Base64.encodeBytes(bytes);
+				getEmailsResult.setSenderPassword(base64password);
+			}			
+			getEmailsResult.setSenderHost(sender.getHost());
 		}
-		
-		
-		getEmailsResult.setSenderHost(sender.getHost());
-		
 		
 		if(!"Y".equalsIgnoreCase(isTest)){//非测试，需要更新数据
 			//更新email表
