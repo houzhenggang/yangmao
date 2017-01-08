@@ -2,7 +2,6 @@ package com.yangmao.dal.dao;
 
 import com.yangmao.dal.dataobj.YangmaoUser;
 import com.yangmao.dal.dataobj.YangmaoUserExample;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;

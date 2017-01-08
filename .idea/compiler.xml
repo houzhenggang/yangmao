@@ -52,40 +52,16 @@
         <processorPath useClasspath="true" />
         <module name="rebates-service" />
       </profile>
-      <profile default="false" name="Annotation profile for yangmao-service" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="true" />
-        <module name="yangmao-service" />
-      </profile>
-      <profile default="false" name="Annotation profile for yangmao-util" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="true" />
-        <module name="yangmao-util" />
-      </profile>
-      <profile default="false" name="Annotation profile for yangmao-dal" enabled="true">
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="yangmao-dal" />
-      </profile>
-      <profile default="false" name="Annotation profile for yangmao-web" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="true" />
-        <module name="yangmao-web" />
-      </profile>
-      <profile default="false" name="Annotation profile for yangmao-model" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="true" />
         <module name="yangmao-model" />
+        <module name="yangmao-service" />
+        <module name="yangmao-util" />
+        <module name="yangmao-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

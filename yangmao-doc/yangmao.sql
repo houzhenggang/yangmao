@@ -248,3 +248,20 @@ insert into yangmao.yangmao_replace_field(template_replace_name,database_field,l
 values("{commodityVolume}","Volume",2,now(),now());
 insert into yangmao.yangmao_replace_field(template_replace_name,database_field,level,create_time,last_update_time)
 values("{commodityImageClickUrl}","imageClickUrl",2,now(),now());
+
+
+#链接点击记录
+CREATE TABLE `yangmao_menu` (
+  `menu_id` bigint NOT NULL AUTO_INCREMENT COMMENT '菜单id',
+  `menu_name` varchar(100) NOT NULL COMMENT '菜单名称',
+  `menu_type` bigint COMMENT '菜单类型',
+  `menu_url` varchar(100) COMMENT '菜单地址',
+  `menu_level` int(11) COMMENT '菜单等级',
+  `menu_parent_id` bigint COMMENT '菜单父id',
+  `create_time` datetime comment '创建时间',
+  `last_update_time` datetime comment '修改时间',
+  PRIMARY KEY (`click_id`),
+  KEY `item_id` (`item_id`),
+  KEY `email` (`email`),
+  KEY `mail_instance_id` (`mail_instance_id`))
+  ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='商品点击表';
