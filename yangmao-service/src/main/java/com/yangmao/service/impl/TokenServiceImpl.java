@@ -42,7 +42,12 @@ public class TokenServiceImpl implements TokenService {
 
 	@Override
 	public UserInfo getUserInfoByToken(String token) {
-		UserInfo userInfo=cacheClient.get(token, UserInfo.class);
+		UserInfo userInfo= new UserInfo();
+		try{
+			userInfo = cacheClient.get(token, UserInfo.class);
+		}catch (Exception e){
+			logger.error("get-user-info exception",e);
+		}
 		return userInfo;
 	}
 
