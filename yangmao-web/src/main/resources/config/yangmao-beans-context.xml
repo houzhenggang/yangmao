@@ -44,7 +44,8 @@
 	<!-- ======================================================================== -->
 	<!-- 数据库事务配置 -->
 	<!-- ======================================================================== -->
-	<bean id="yangmaoTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="yangmaoTransactionManager" class=
+			"org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="#{apiConfig['yangmao.datasource.type']}" />
 	</bean>
 
